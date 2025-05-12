@@ -51,7 +51,7 @@ export const requestHandler = async <T>(
         res = await httpClient.delete(url);
         break;
     }
-    return res.data;
+    return res;
   } catch (err) {
     return Promise.reject(err);
   }

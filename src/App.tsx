@@ -1,24 +1,16 @@
-import { requestHandler } from '@/api/axios';
+import { login } from '@/api/auth.api';
 
 function App() {
-  requestHandler('post', '/api/member', {
+  login({
     username: 'string',
     password: 'string',
-    phone: 'string',
-    birthdate: '2025-05-11',
-  }).then(function (response) {
-    console.log(response.data);
-    console.log(response.status);
-    console.log(response.statusText);
-    console.log(response.headers);
-    console.log(response.config);
-  });
+  }).then();
 
   return (
     <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
       <img
         className="size-12 shrink-0"
-        src="/img/logo.svg"
+        src="/img/logo.svgS"
         alt="ChitChat Logo"
       />
       <div>
