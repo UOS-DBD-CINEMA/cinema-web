@@ -1,7 +1,6 @@
+import About from '@pages/About';
+import Home from '@pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router';
-
-import About from './pages/About';
-import Home from './pages/Home';
 
 const router = createBrowserRouter([
   {
