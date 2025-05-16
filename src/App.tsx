@@ -1,10 +1,24 @@
-import { login } from '@/api/auth.api';
+import { useEffect } from 'react';
+
+import { useAuth } from './hooks/useAuth';
 
 function App() {
-  login({
-    username: 'string',
-    password: 'string',
-  }).then();
+  const { memberJoin, memberLogin, getMember, deleteMember } = useAuth();
+
+  useEffect(() => {
+    // memberJoin({
+    //   username: 'string',
+    //   password: 'string',
+    //   phone: 'string',
+    //   birthdate: '2025-05-16',
+    // });
+    // memberLogin({
+    //   username: 'string',
+    //   password: 'string',
+    // });
+    getMember();
+    deleteMember();
+  }, []);
 
   return (
     <div className="mx-auto flex max-w-sm items-center gap-x-4 rounded-xl bg-white p-6 shadow-lg outline outline-black/5 dark:bg-slate-800 dark:shadow-none dark:-outline-offset-1 dark:outline-white/10">
