@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 
-import { useAuth } from './hooks/useAuth';
+import { useAuth } from '@/hooks/useAuth';
 
-function App() {
+const Home = () => {
   const { memberJoin, memberLogin, getMember, deleteMember } = useAuth();
 
   useEffect(() => {
@@ -37,6 +37,6 @@ function App() {
       </div>
     </div>
   );
-}
+};
 
-export default App;
+export default Home;
