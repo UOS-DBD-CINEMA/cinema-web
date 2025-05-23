@@ -1,5 +1,5 @@
-import About from '@pages/About';
-import Home from '@pages/Home';
+import { About } from '@pages/About';
+import { Home } from '@pages/Home';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
 const router = createBrowserRouter([
@@ -13,8 +13,6 @@ const router = createBrowserRouter([
   },
 ]);
 
-const Router = () => {
+export function Router() {
   return <RouterProvider router={router} />;
-};
-
-export default Router;
+}
