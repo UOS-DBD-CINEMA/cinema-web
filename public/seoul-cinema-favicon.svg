@@ -1,6 +1,6 @@
 <svg viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
   <style>
-    .primary { fill: oklch(0.645 0.246 16.439); }
+    .primary { fill: oklch(0.6 0.5 28); }
     .hole { fill: white; }
   </style>
   <rect x="2" y="12" width="60" height="40" rx="5" class="primary"/>
