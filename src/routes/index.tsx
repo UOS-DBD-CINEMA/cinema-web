@@ -1,15 +1,27 @@
-import { About } from '@pages/About';
 import { Home } from '@pages/Home';
+import { Join } from '@pages/Join';
+import { Login } from '@pages/Login';
 import { createBrowserRouter, RouterProvider } from 'react-router';
+
+import DefaultLayout from '@/routes/layouts/Default';
 
 const router = createBrowserRouter([
   {
-    path: '/',
-    element: <Home />,
-  },
-  {
-    path: '/about',
-    element: <About />,
+    element: <DefaultLayout />,
+    children: [
+      {
+        path: '/',
+        element: <Home />,
+      },
+      {
+        path: '/login',
+        element: <Login />,
+      },
+      {
+        path: '/join',
+        element: <Join />,
+      },
+    ],
   },
 ]);
 

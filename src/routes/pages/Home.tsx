@@ -1,29 +1,18 @@
 import { useEffect } from 'react';
 
-import { ModeToggle } from '@/components/mode-toggle';
-import { useAuth } from '@/hooks/useAuth';
+import { useMember } from '@/hooks/useMember';
 
 export function Home() {
-  const { memberJoin, memberLogin, getMember, deleteMember } = useAuth();
+  const { JoinMember } = useMember();
 
   useEffect(() => {
-    // memberJoin({
-    //   username: 'string',
-    //   password: 'string',
-    //   phone: 'string',
-    //   birthdate: '2025-05-16',
-    // });
-    // memberLogin({
-    //   username: 'string',
-    //   password: 'string',
-    // });
-    getMember();
-    deleteMember();
+    JoinMember({
+      username: 'string',
+      password: 'string',
+      phone: 'string',
+      birthdate: '2025-05-16',
+    });
   }, []);
 
-  return (
-    <div>
-      <ModeToggle></ModeToggle>
-    </div>
-  );
+  return <div>Home</div>;
 }
