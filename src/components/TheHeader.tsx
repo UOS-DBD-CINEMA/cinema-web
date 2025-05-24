@@ -1,7 +1,12 @@
-import { Link } from 'react-router';
+import { Link, NavLink } from 'react-router';
 
 import { ModeToggle } from './mode-toggle';
 import { Button } from './ui/button';
+
+const navigations = [
+  { to: '/movies', label: '영화' },
+  { to: '/ticket', label: '티켓' },
+];
 
 export function TheHeader() {
   return (
@@ -19,6 +24,19 @@ export function TheHeader() {
             alt="seoul cinema favicon"
           />
         </Link>
+        <nav className="flex gap-4 text-lg">
+          {navigations.map(nav => (
+            <NavLink
+              key={nav.to}
+              to={nav.to}
+              className={({ isActive }) =>
+                isActive ? 'text-primary font-bold' : ''
+              }
+            >
+              {nav.label}
+            </NavLink>
+          ))}
+        </nav>
       </div>
       <div className="flex items-center gap-4">
         <Button asChild>
