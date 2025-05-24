@@ -1,4 +1,5 @@
 import axios, { AxiosRequestConfig } from 'axios';
+import { redirect } from 'react-router';
 
 import { getAccessToken } from '@/store/authStore';
 
@@ -27,6 +28,7 @@ const createClient = (config?: AxiosRequestConfig) => {
 
         switch (status) {
           case 401:
+            redirect('/login');
         }
       }
       return Promise.reject(err);
