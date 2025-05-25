@@ -1,7 +1,7 @@
 import { create } from 'zustand';
 import { combine, devtools } from 'zustand/middleware';
 
-const getAccessToken = () => {
+export const getAccessToken = () => {
   const accessToken = localStorage.getItem('accessToken');
   return accessToken;
 };
