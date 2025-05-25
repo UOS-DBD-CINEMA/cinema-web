@@ -1,4 +1,4 @@
-import { FormEvent, useRef } from 'react';
+import { FormEvent, useCallback, useRef } from 'react';
 import { Link } from 'react-router';
 
 import { Button } from '@/components/ui/button';
@@ -23,14 +23,16 @@ export function LoginForm({
   const idRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
 
-  const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    memberLogin({
-      username: idRef.current?.value as string,
-      password: passwordRef.current?.value as string,
-    });
-  };
-
+  const handleSubmit = useCallback(
+    (event: FormEvent<HTMLFormElement>) => {
+      event.preventDefault();
+      memberLogin({
+        username: idRef.current?.value as string,
+        password: passwordRef.current?.value as string,
+      });
+    },
+    [memberLogin, idRef, passwordRef],
+  );
   return (
     <div className={cn('flex flex-col gap-6', className)} {...props}>
       <Card>
