@@ -1,5 +1,7 @@
 import { Link, NavLink } from 'react-router';
 
+import { useAuthStore } from '@/store/authStore';
+
 import { ModeToggle } from './mode-toggle';
 import { Button } from './ui/button';
 
@@ -9,6 +11,8 @@ const navigations = [
 ];
 
 export function TheHeader() {
+  const { isLogin, storeLogout } = useAuthStore();
+
   return (
     <header className="flex h-14 items-center justify-between gap-8 border-b px-4 sm:px-6">
       <div className="flex items-center gap-4">
@@ -39,15 +43,28 @@ export function TheHeader() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <Button asChild>
-          <Link to="/login">Login</Link>
-        </Button>
-        <Button asChild variant="secondary">
-          <Link to="/join">Join</Link>
-        </Button>
-        <div>
-          <ModeToggle></ModeToggle>
-        </div>
+        {isLogin ? (
+          <Button asChild>
+            <Link
+              to="/"
+              onClick={() => {
+                storeLogout();
+              }}
+            >
+              Logout
+            </Link>
+          </Button>
+        ) : (
+          <div className="flex gap-4">
+            <Button asChild>
+              <Link to="/login">Login</Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link to="/join">Join</Link>
+            </Button>
+          </div>
+        )}
+        <ModeToggle></ModeToggle>
       </div>
     </header>
   );
