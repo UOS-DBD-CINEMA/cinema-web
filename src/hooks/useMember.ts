@@ -1,9 +1,9 @@
 import {
   deleteMemberAPI,
   getMemberAPI,
-  JoinPayload,
+  type JoinPayload,
   patchMemberAPI,
-  PatchMemberPayload,
+  type PatchMemberPayload,
   postMemberAPI,
 } from '@/api/member.api';
 import { useAuthStore } from '@/store/authStore';

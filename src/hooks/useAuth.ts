@@ -1,6 +1,6 @@
 import { useNavigate } from 'react-router';
 
-import { loginAPI, LoginPayload } from '@/api/auth.api';
+import { loginAPI, type LoginPayload } from '@/api/auth.api';
 import { useAuthStore } from '@/store/authStore';
 
 export const useAuth = () => {
