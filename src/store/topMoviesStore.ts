@@ -1,7 +1,16 @@
 import { create } from 'zustand';
 import { combine, devtools } from 'zustand/middleware';
 
-import { getMoviesAPI } from '@/api/movie.api';
+import { getMoviesAPI, type Movie } from '@/api/movie.api';
+
+export const getTopMoviesFromLocalStorage = () => {
+  const topMoviesJSON = localStorage.getItem('topMovies');
+  if (topMoviesJSON) {
+    const topMovies = JSON.parse(topMoviesJSON) satisfies Movie[] as Movie[];
+    return topMovies;
+  }
+  return [];
+};
 
 const setInitialIsTopMovies = () => {
   const topMovies = localStorage.getItem('topMovies');

@@ -1,11 +1,10 @@
 import { useEffect } from 'react';
 
+import { TopMoviesCarousel } from '@/components/TopMoviesCarousel';
 import { useMember } from '@/hooks/useMember';
-import { useTopMoviesStore } from '@/store/topMoviesStore';
 
 export function Home() {
   const { JoinMember } = useMember();
-  const { isTopMovies } = useTopMoviesStore();
 
   useEffect(() => {
     JoinMember({
@@ -26,7 +25,9 @@ export function Home() {
           className="w-7xl"
         />
       </div>
-      <div>aa</div>
+      <div className="flex justify-center py-10">
+        <TopMoviesCarousel />
+      </div>
     </div>
   );
 }
