@@ -11,33 +11,21 @@ import DefaultLayout from '@/routes/layouts/Default';
 
 const router = createBrowserRouter([
   {
-    element: <DefaultLayout />,
+    Component: DefaultLayout,
     children: [
-      {
-        path: '/',
-        element: <Home />,
-      },
-      {
-        path: '/login',
-        element: <Login />,
-      },
-      {
-        path: '/join',
-        element: <Join />,
-      },
+      { path: '/', Component: Home },
+      { path: '/login', Component: Login },
+      { path: '/join', Component: Join },
+      { path: '/ticket', Component: Ticket },
       {
         path: '/movies',
-        element: <Movies />,
-        children: [{ path: ':movieId', element: <MovieDetail /> }],
+
+        children: [
+          { index: true, Component: Movies },
+          { path: ':movieId', Component: MovieDetail },
+        ],
       },
-      {
-        path: '/ticket',
-        element: <Ticket />,
-      },
-      {
-        path: '*',
-        element: <NotFound />,
-      },
+      { path: '*', Component: NotFound },
     ],
   },
 ]);
