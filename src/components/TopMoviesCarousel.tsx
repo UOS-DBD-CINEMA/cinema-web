@@ -1,3 +1,4 @@
+import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import {
@@ -12,10 +13,13 @@ import {
   useTopMoviesStore,
 } from '@/store/topMoviesStore';
 
+import { Button } from './ui/button';
+
 export function TopMoviesCarousel() {
   const { isTopMovies } = useTopMoviesStore();
   const topMovies = getTopMoviesFromLocalStorage();
   const navigate = useNavigate();
+  const [movieId, setmovieId] = useState<number | null>(null);
 
   return (
     <>
@@ -34,8 +38,15 @@ export function TopMoviesCarousel() {
                 className="basis-1/3 max-sm:pl-2 lg:basis-1/5"
               >
                 <div
+                  className="relative"
+                  onMouseOver={() => {
+                    setmovieId(movie.id);
+                  }}
+                  onMouseOut={() => {
+                    setmovieId(null);
+                  }}
                   onClick={() => {
-                    navigate(`/movies/:${movie.id}`);
+                    navigate(`/ticket/:${movie.id}`);
                   }}
                 >
                   <img
@@ -43,6 +54,23 @@ export function TopMoviesCarousel() {
                     alt={movie.title}
                     className="aspect-3/4 rounded-2xl"
                   />
+                  {movieId === movie.id ? (
+                    <div className="absolute top-0 flex h-full w-full flex-col justify-center gap-2 rounded-2xl bg-black/10 p-2">
+                      <Button className="rounded-xl">예매하기</Button>
+                      <Button
+                        variant="secondary"
+                        className="rounded-xl"
+                        onClick={event => {
+                          event.stopPropagation();
+                          navigate(`/movies/:${movie.id}`);
+                        }}
+                      >
+                        상세보기
+                      </Button>
+                    </div>
+                  ) : (
+                    ''
+                  )}
                 </div>
                 <div className="flex flex-col overflow-hidden">
                   <span className="text-center text-xl">{movie.title}</span>
