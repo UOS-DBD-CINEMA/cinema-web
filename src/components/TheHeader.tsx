@@ -28,13 +28,13 @@ export function TheHeader() {
             alt="seoul cinema favicon"
           />
         </Link>
-        <nav className="flex gap-4 text-lg">
+        <nav className="flex gap-4 text-lg font-bold">
           {navigations.map(nav => (
             <NavLink
               key={nav.to}
               to={nav.to}
               className={({ isActive }) =>
-                isActive ? 'text-primary font-bold' : ''
+                isActive ? 'text-primary' : 'hover:scale-105 hover:opacity-80'
               }
             >
               {nav.label}
