@@ -1,4 +1,5 @@
 import js from '@eslint/js';
+import pluginQuery from '@tanstack/eslint-plugin-query';
 import prettier from 'eslint-plugin-prettier';
 import react from 'eslint-plugin-react';
 import reactHooks from 'eslint-plugin-react-hooks';
@@ -32,10 +33,12 @@ export default tseslint.config(
       'react-refresh': reactRefresh,
       prettier,
       'simple-import-sort': simpleImportSort,
+      '@tanstack/query': pluginQuery,
     },
     rules: {
       ...react.configs.recommended.rules,
       ...reactHooks.configs.recommended.rules,
+      ...pluginQuery.configs.recommended.rules,
       '@typescript-eslint/no-unused-vars': 'warn',
       'react/react-in-jsx-scope': 'off',
       'react-refresh/only-export-components': [
