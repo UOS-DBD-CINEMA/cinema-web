@@ -1,13 +1,15 @@
 import { Home } from '@pages/Home';
 import { Join } from '@pages/Join';
 import { Login } from '@pages/Login';
+import { MemberTickets } from '@pages/MemberTickets';
 import { MovieDetail } from '@pages/MovieDetail';
 import { Movies } from '@pages/Movies';
 import { NotFound } from '@pages/NotFound';
-import { Ticket } from '@pages/Ticket';
+import { Seats } from '@pages/Seats';
+import { Ticketing } from '@pages/Ticketing';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
-import DefaultLayout from '@/routes/layouts/Default';
+import { DefaultLayout } from '@/routes/layouts/Default';
 
 const router = createBrowserRouter([
   {
@@ -25,11 +27,15 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'ticket',
+        path: 'ticketing',
         children: [
-          { index: true, Component: Ticket },
-          { path: ':movieId', Component: Ticket },
+          { index: true, Component: Ticketing },
+          { path: 'seats', Component: Seats },
         ],
+      },
+      {
+        path: 'memberPage',
+        children: [{ path: 'tickets', Component: MemberTickets }],
       },
       { path: '*', Component: NotFound },
     ],
