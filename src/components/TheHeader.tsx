@@ -1,5 +1,7 @@
+import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
+import { useMember } from '@/hooks/useMember';
 import { useAuthStore } from '@/store/authStore';
 
 import { ModeToggle } from './mode-toggle';
@@ -7,11 +9,21 @@ import { Button } from './ui/button';
 
 const navigations = [
   { to: '/movies', label: '영화' },
-  { to: '/ticket', label: '티켓' },
+  { to: '/ticketing', label: '티켓' },
 ];
 
 export function TheHeader() {
   const { isLogin, storeLogout } = useAuthStore();
+  const { JoinMember } = useMember();
+
+  useEffect(() => {
+    JoinMember({
+      username: 'string',
+      password: 'string',
+      phone: 'string',
+      birthdate: '2025-05-16',
+    });
+  }, [JoinMember]);
 
   return (
     <header className="flex h-14 items-center justify-between gap-8 border-b px-4 sm:px-6">
@@ -44,23 +56,28 @@ export function TheHeader() {
       </div>
       <div className="flex items-center gap-4">
         {isLogin ? (
-          <Button asChild>
-            <Link
-              to="/"
-              onClick={() => {
-                storeLogout();
-              }}
-            >
-              Logout
-            </Link>
-          </Button>
+          <div className="flex gap-4">
+            <Button asChild>
+              <Link to="/memberPage/tickets">예매내역</Link>
+            </Button>
+            <Button asChild variant="secondary">
+              <Link
+                to="/"
+                onClick={() => {
+                  storeLogout();
+                }}
+              >
+                로그아웃
+              </Link>
+            </Button>
+          </div>
         ) : (
           <div className="flex gap-4">
             <Button asChild>
-              <Link to="/login">Login</Link>
+              <Link to="/login">로그인</Link>
             </Button>
             <Button asChild variant="secondary">
-              <Link to="/join">Join</Link>
+              <Link to="/join">회원가입</Link>
             </Button>
           </div>
         )}

@@ -1,20 +1,6 @@
-import { useEffect } from 'react';
-
 import { TopMoviesCarousel } from '@/components/TopMoviesCarousel';
-import { useMember } from '@/hooks/useMember';
 
 export function Home() {
-  const { JoinMember } = useMember();
-
-  useEffect(() => {
-    JoinMember({
-      username: 'string',
-      password: 'string',
-      phone: 'string',
-      birthdate: '2025-05-16',
-    });
-  }, []);
-
   return (
     <div className="flex flex-col">
       <div className="flex justify-center bg-black">
