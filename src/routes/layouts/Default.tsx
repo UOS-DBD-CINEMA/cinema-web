@@ -2,7 +2,7 @@ import { Outlet, ScrollRestoration } from 'react-router';
 
 import { TheHeader } from '@/components/TheHeader';
 
-export default function DefaultLayout() {
+export function DefaultLayout() {
   return (
     <>
       <TheHeader />
