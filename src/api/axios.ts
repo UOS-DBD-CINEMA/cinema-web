@@ -1,12 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
-import { redirect } from 'react-router';
 
 import { getAccessToken } from '@/store/authStore';
 
 const createClient = (config?: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_SERVER_BASE_URL,
-    timeout: 5000,
+    baseURL: import.meta.env.VITE_BASE_URL,
+    timeout: 1000 * 10,
     headers: {
       'Content-Type': 'application/json',
     },
@@ -28,7 +27,6 @@ const createClient = (config?: AxiosRequestConfig) => {
 
         switch (status) {
           case 401:
-            redirect('/login');
         }
       }
       return Promise.reject(err);
