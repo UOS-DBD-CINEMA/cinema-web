@@ -8,22 +8,19 @@ import {
   CarouselNext,
   CarouselPrevious,
 } from '@/components/ui/carousel';
-import {
-  getTopMoviesFromLocalStorage,
-  useTopMoviesStore,
-} from '@/store/topMoviesStore';
+import { useTopMovies } from '@/hooks/useTopMovies';
 
 import { Button } from './ui/button';
 
 export function TopMoviesCarousel() {
-  const { isTopMovies } = useTopMoviesStore();
-  const topMovies = getTopMoviesFromLocalStorage();
+  const [hoveringMovieId, setHoveringMovieId] = useState<number | null>(null);
+  const { data: topMovies } = useTopMovies();
+
   const navigate = useNavigate();
-  const [movieId, setmovieId] = useState<number | null>(null);
 
   return (
     <>
-      {isTopMovies ? (
+      {topMovies && (
         <Carousel
           className="px-2 sm:w-lg md:w-xl lg:w-4xl xl:w-6xl"
           opts={{
@@ -40,13 +37,15 @@ export function TopMoviesCarousel() {
                 <div
                   className="relative"
                   onMouseOver={() => {
-                    setmovieId(movie.id);
+                    setHoveringMovieId(movie.id);
                   }}
                   onMouseOut={() => {
-                    setmovieId(null);
+                    setHoveringMovieId(null);
                   }}
                   onClick={() => {
-                    navigate(`/ticket/:${movie.id}`);
+                    navigate(`/ticketing`, {
+                      state: { movieId: movie.id },
+                    });
                   }}
                 >
                   <img
@@ -54,7 +53,7 @@ export function TopMoviesCarousel() {
                     alt={movie.title}
                     className="aspect-3/4 rounded-2xl"
                   />
-                  {movieId === movie.id ? (
+                  {hoveringMovieId === movie.id ? (
                     <div className="absolute top-0 flex h-full w-full flex-col justify-center gap-2 rounded-2xl bg-black/10 p-2">
                       <Button className="rounded-xl hover:scale-105">
                         예매하기
@@ -64,7 +63,7 @@ export function TopMoviesCarousel() {
                         className="rounded-xl hover:scale-105"
                         onClick={event => {
                           event.stopPropagation();
-                          navigate(`/movies/:${movie.id}`);
+                          navigate(`/movies/${movie.id}`);
                         }}
                       >
                         상세보기
@@ -83,8 +82,6 @@ export function TopMoviesCarousel() {
           <CarouselPrevious />
           <CarouselNext />
         </Carousel>
-      ) : (
-        ''
       )}
     </>
   );
