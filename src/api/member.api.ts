@@ -24,9 +24,9 @@ export interface PatchMemberPayload {
   birthdate: string;
 }
 
-export interface JoinPayload {
+export type JoinPayload = {
   username: string;
   password: string;
   phone: string;
   birthdate: string;
-}
+};

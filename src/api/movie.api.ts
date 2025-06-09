@@ -1,10 +1,10 @@
-import { httpClient } from './axios';
+import { httpClient } from '@/api/axios';
 
 export const getMoviesAPI = async () => {
   return await httpClient.get('/api/movies');
 };
 
-export interface Movie {
+export type Movie = {
   id: number;
   title: string;
   description: string;
@@ -12,4 +12,4 @@ export interface Movie {
   genre: string;
   rating: string;
   posterUrl: string;
-}
+};
