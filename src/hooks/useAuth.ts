@@ -8,13 +8,10 @@ export const useAuth = () => {
   const navigate = useNavigate();
 
   const memberLogin = (loginPayload: LoginPayload) => {
-    loginAPI(loginPayload).then(
-      res => {
-        storeLogin(res.data);
-        navigate('/', { replace: true });
-      },
-      err => {},
-    );
+    loginAPI(loginPayload).then(res => {
+      storeLogin(res.data);
+      navigate('/', { replace: true });
+    });
   };
 
   return {
