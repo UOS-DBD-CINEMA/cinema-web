@@ -22,7 +22,7 @@ export function TopMoviesCarousel() {
     <>
       {topMovies && (
         <Carousel
-          className="px-2 sm:w-lg md:w-xl lg:w-4xl xl:w-6xl"
+          className="px-2 sm:w-5/6 xl:w-6xl"
           opts={{
             align: 'start',
             loop: true,
@@ -43,9 +43,7 @@ export function TopMoviesCarousel() {
                     setHoveringMovieId(null);
                   }}
                   onClick={() => {
-                    navigate(`/ticketing`, {
-                      state: { movieId: movie.id },
-                    });
+                    navigate(`/movies/${movie.id}`);
                   }}
                 >
                   <img
@@ -55,16 +53,20 @@ export function TopMoviesCarousel() {
                   />
                   {hoveringMovieId === movie.id ? (
                     <div className="absolute top-0 flex h-full w-full flex-col justify-center gap-2 rounded-2xl bg-black/10 p-2">
-                      <Button className="rounded-xl hover:scale-105">
+                      <Button
+                        className="rounded-xl hover:scale-105"
+                        onClick={event => {
+                          event.stopPropagation();
+                          navigate(`/ticketing`, {
+                            state: { movieId: movie.id },
+                          });
+                        }}
+                      >
                         예매하기
                       </Button>
                       <Button
                         variant="secondary"
                         className="rounded-xl hover:scale-105"
-                        onClick={event => {
-                          event.stopPropagation();
-                          navigate(`/movies/${movie.id}`);
-                        }}
                       >
                         상세보기
                       </Button>
