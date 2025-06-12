@@ -37,8 +37,8 @@ export function LoginForm({
     <div className={cn('flex flex-col', className)} {...props}>
       <Card>
         <CardHeader>
-          <CardTitle>Login</CardTitle>
-          <CardDescription>Enter your id and password</CardDescription>
+          <CardTitle>로그인</CardTitle>
+          <CardDescription>id와 password를 입력하세요</CardDescription>
         </CardHeader>
         <CardContent>
           <form onSubmit={handleSubmit}>
@@ -50,12 +50,12 @@ export function LoginForm({
               <div className="grid gap-3">
                 <div className="flex items-center">
                   <Label htmlFor="password">Password</Label>
-                  <a
+                  {/* <a
                     href="#"
                     className="ml-auto inline-block text-sm underline-offset-4 hover:underline"
                   >
                     Forgot your password?
-                  </a>
+                  </a> */}
                 </div>
                 <Input
                   id="password"
@@ -66,7 +66,7 @@ export function LoginForm({
               </div>
               <div className="flex flex-col gap-3">
                 <Button type="submit" className="w-full">
-                  Login
+                  로그인
                 </Button>
                 <Button variant="outline" className="w-full">
                   Login with Google
