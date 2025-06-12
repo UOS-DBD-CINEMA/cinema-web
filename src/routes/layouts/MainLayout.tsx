@@ -1,11 +1,11 @@
 import { Outlet, ScrollRestoration } from 'react-router';
 
-import { TheHeader } from '@/components/TheHeader';
+import { MainHeader } from '@/components/MainHeader';
 
-export function DefaultLayout() {
+export function MainLayout() {
   return (
     <>
-      <TheHeader />
+      <MainHeader />
       <Outlet />
       <ScrollRestoration />
     </>

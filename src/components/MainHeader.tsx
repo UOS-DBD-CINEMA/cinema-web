@@ -1,41 +1,41 @@
 import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
-import { useMember } from '@/hooks/useMember';
+import { postMemberAPI } from '@/api/member.api';
 import { useAuthStore } from '@/store/authStore';
 
 import { ModeToggle } from './mode-toggle';
 import { Button } from './ui/button';
+import { UserToggle } from './UserToggle';
 
 const navigations = [
   { to: '/movies', label: '영화' },
   { to: '/ticketing', label: '티켓' },
 ];
 
-export function TheHeader() {
+export function MainHeader() {
   const { isLogin, storeLogout } = useAuthStore();
-  const { JoinMember } = useMember();
 
   useEffect(() => {
-    JoinMember({
+    postMemberAPI({
       username: 'string',
       password: 'string',
       phone: 'string',
       birthdate: '2025-05-16',
     });
-  }, [JoinMember]);
+  }, []);
 
   return (
     <header className="flex h-14 items-center justify-between gap-8 border-b px-4 sm:px-6">
       <div className="flex items-center gap-4">
         <Link to="/">
           <img
-            className="h-0 sm:h-14"
+            className="h-0 md:h-14"
             src="/seoul-cinema-logo.svg"
             alt="seoul cinema logo"
           />
           <img
-            className="h-0 max-sm:h-14"
+            className="h-0 max-md:h-14"
             src="/seoul-cinema-favicon.svg"
             alt="seoul cinema favicon"
           />
@@ -72,7 +72,7 @@ export function TheHeader() {
             </Button>
           </div>
         ) : (
-          <div className="flex gap-4">
+          <div className="flex gap-4 max-lg:hidden">
             <Button asChild>
               <Link to="/login">로그인</Link>
             </Button>
@@ -81,7 +81,8 @@ export function TheHeader() {
             </Button>
           </div>
         )}
-        <ModeToggle></ModeToggle>
+        <UserToggle />
+        <ModeToggle />
       </div>
     </header>
   );
