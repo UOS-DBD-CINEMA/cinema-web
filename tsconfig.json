@@ -9,6 +9,7 @@
     "paths": {
       "@/*": ["src/*"], // '@'를 'src' 폴더로 매핑
       "@pages/*": ["src/routes/pages/*"]
-    }
+    },
+    "strict": true
   }
 }
