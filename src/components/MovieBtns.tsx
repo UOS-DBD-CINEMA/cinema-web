@@ -1,5 +1,3 @@
-import { useEffect } from 'react';
-
 import { Movie } from '@/api/movie.api';
 
 type MovieBtnsProps = {
@@ -14,13 +12,13 @@ export function MovieBtns({
   setSelectedMovieId,
 }: MovieBtnsProps) {
   return (
-    <div className="flex h-full flex-col overflow-x-hidden">
+    <div className="flex h-full flex-col overflow-x-hidden overflow-y-auto">
       {moviesList.map(movie => (
         <div key={movie.id}>
           {selectedMovieId === movie.id ? (
             <button
               type="button"
-              className="border-primary hover:bg-primary/10 w-full border-l-2 p-2 text-left font-semibold"
+              className="border-primary hover:bg-primary/10 w-max border-l-2 p-2 text-left font-semibold"
               onClick={() => setSelectedMovieId(null)}
             >
               {movie.title}
@@ -28,7 +26,7 @@ export function MovieBtns({
           ) : (
             <button
               type="button"
-              className="hover:bg-primary/10 w-full border-l-2 p-2 text-left font-semibold"
+              className="hover:bg-primary/10 w-max border-l-2 p-2 text-left font-semibold"
               onClick={() => setSelectedMovieId(movie.id)}
             >
               {movie.title}
