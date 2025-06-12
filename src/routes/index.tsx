@@ -9,12 +9,17 @@ import { Seats } from '@pages/Seats';
 import { Ticketing } from '@pages/Ticketing';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
-import { DefaultLayout } from '@/routes/layouts/Default';
+import { AdminMovies } from '@/components/admin/AdminMovies';
+import { MainLayout } from '@/routes/layouts/MainLayout';
+
+import { AdminLayout } from './layouts/AdminLayout';
+import { AdminHome } from './pages/admin/AdminHome';
+import { Payment } from './pages/Payment';
 
 const router = createBrowserRouter([
   {
     path: '/',
-    Component: DefaultLayout,
+    Component: MainLayout,
     children: [
       { index: true, Component: Home },
       { path: 'login', Component: Login },
@@ -31,12 +36,22 @@ const router = createBrowserRouter([
         children: [
           { index: true, Component: Ticketing },
           { path: 'seats', Component: Seats },
+          { path: 'payment', Component: Payment },
         ],
       },
       {
         path: 'memberPage',
         children: [{ path: 'tickets', Component: MemberTickets }],
       },
+      { path: '*', Component: NotFound },
+    ],
+  },
+  {
+    path: '/admin',
+    Component: AdminLayout,
+    children: [
+      { index: true, Component: AdminHome },
+      { path: 'movies', Component: AdminMovies },
       { path: '*', Component: NotFound },
     ],
   },

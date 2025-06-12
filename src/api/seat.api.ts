@@ -9,8 +9,8 @@ export type ScreeningSeats = {
   seats: Seat[];
 };
 
-type Seat = {
+export type Seat = {
   row: number;
-  column: number;
+  col: number;
   available: boolean;
 };

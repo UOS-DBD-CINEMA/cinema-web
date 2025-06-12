@@ -1,7 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
-import { getScreeningInfosAPI, ScreeningInfo } from '@/api/screening.api';
+import {
+  getScreeningsAPI,
+  type Screening as ScreeningT,
+} from '@/api/screening.api';
 import { MovieBtns } from '@/components/MovieBtns';
 import { Screening } from '@/components/Screening';
 import { Card } from '@/components/ui/card';
@@ -9,7 +12,7 @@ import { useMovies } from '@/hooks/useMovies';
 
 export function Ticketing() {
   const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
-  const [screeningInfos, setScreeningInfos] = useState<ScreeningInfo[]>([]);
+  const [screenings, setScreenings] = useState<ScreeningT[]>([]);
 
   const { data: moviesList } = useMovies();
 
@@ -17,11 +20,11 @@ export function Ticketing() {
 
   useEffect(() => {
     if (typeof selectedMovieId === 'number') {
-      getScreeningInfosAPI(selectedMovieId).then(res => {
-        setScreeningInfos(res.data);
+      getScreeningsAPI(selectedMovieId).then(res => {
+        setScreenings(res.data);
       });
     } else {
-      setScreeningInfos([]);
+      setScreenings([]);
     }
   }, [selectedMovieId]);
 
@@ -35,25 +38,23 @@ export function Ticketing() {
     //       'dddadsggegeaerherhrhaerrahrehargrsehrehsrehersherjeregagwrharherhehehearharhaererhaer',
     //   });
     // }
-  }, []);
+  }, [location.state?.movieId]);
   return (
-    <>
-      <div className="flex h-[calc(100svh-(--spacing(14)))] justify-center px-4 py-4 sm:py-10">
-        <Card className="w-6xl flex-row gap-0 p-0">
-          <div className="w-3xs border-r p-2 sm:w-2xs lg:w-sm">
-            {moviesList && (
-              <MovieBtns
-                moviesList={moviesList}
-                selectedMovieId={selectedMovieId}
-                setSelectedMovieId={setSelectedMovieId}
-              />
-            )}
-          </div>
-          <div className="p-2">
-            <Screening screeningInfos={screeningInfos} />
-          </div>
-        </Card>
-      </div>
-    </>
+    <div className="flex h-[calc(100svh-(--spacing(14)))] justify-center p-4 sm:py-8">
+      <Card className="w-6xl flex-row gap-0 p-0">
+        <div className="w-3xs border-r p-2 sm:w-2xs lg:w-sm">
+          {moviesList && (
+            <MovieBtns
+              moviesList={moviesList}
+              selectedMovieId={selectedMovieId}
+              setSelectedMovieId={setSelectedMovieId}
+            />
+          )}
+        </div>
+        <div className="flex p-2">
+          <Screening screenings={screenings} />
+        </div>
+      </Card>
+    </div>
   );
 }
