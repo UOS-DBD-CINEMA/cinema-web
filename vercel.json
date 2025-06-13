@@ -1,8 +1,7 @@
 {
   "rewrites": [
-    { "source": "/(.*)", "destination": "/" },
     {
-      "source": "/api/:path*",
+      "source": "/[^/]*/api/:path*",
       "destination": "https://cinema-api.fly.dev/api/:path*"
     }
   ]
