@@ -6,11 +6,11 @@ type NumToggleGroupProps = {
   setSelectedNum: React.Dispatch<React.SetStateAction<number>>;
 };
 
-export const NumToggleGroup = ({
+export function NumToggleGroup({
   maxNum,
   selectedNum,
   setSelectedNum,
-}: NumToggleGroupProps) => {
+}: NumToggleGroupProps) {
   return (
     <ToggleGroup
       type="single"
@@ -30,4 +30,4 @@ export const NumToggleGroup = ({
       ))}
     </ToggleGroup>
   );
-};
+}
