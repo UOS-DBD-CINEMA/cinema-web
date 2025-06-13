@@ -6,9 +6,7 @@ import tsconfigPaths from 'vite-tsconfig-paths';
 
 // https://vite.dev/config/
 
-export default ({ mode }: { mode: string }) => {
-  const env = loadEnv(mode, process.cwd(), '');
-
+export default () => {
   return defineConfig({
     plugins: [
       react(),
@@ -18,10 +16,10 @@ export default ({ mode }: { mode: string }) => {
     ],
     server: {
       proxy: {
-        '^/api': {
-          target: env.SERVER_BASE_URL,
+        '/api': {
+          target: 'https://cinema-api.fly.dev',
           changeOrigin: true,
-          rewrite: path => path.replace(/^\/api/, '/api'),
+          rewrite: path => path.replace(/^\/api/, ''),
         },
       },
     },
