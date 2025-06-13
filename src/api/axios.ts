@@ -2,9 +2,11 @@ import axios, { AxiosRequestConfig } from 'axios';
 
 import { getAccessToken } from '@/store/authStore';
 
+const baseURL = import.meta.env.VITE_BASE_URL ?? '';
+
 const createClient = (config?: AxiosRequestConfig) => {
   const axiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_BASE_URL,
+    baseURL,
     timeout: 1000 * 10,
     headers: {
       'Content-Type': 'application/json',
