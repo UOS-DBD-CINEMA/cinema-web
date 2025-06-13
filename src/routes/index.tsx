@@ -1,3 +1,4 @@
+import { AdminMovies } from '@pages/admin/AdminMovies';
 import { Home } from '@pages/Home';
 import { Join } from '@pages/Join';
 import { Login } from '@pages/Login';
@@ -9,7 +10,6 @@ import { Seats } from '@pages/Seats';
 import { Ticketing } from '@pages/Ticketing';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
-import { AdminMovies } from '@/components/admin/AdminMovies';
 import { MainLayout } from '@/routes/layouts/MainLayout';
 
 import { AdminLayout } from './layouts/AdminLayout';
