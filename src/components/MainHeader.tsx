@@ -56,7 +56,7 @@ export function MainHeader() {
       </div>
       <div className="flex items-center gap-4">
         {isLogin ? (
-          <div className="flex gap-4">
+          <div className="flex gap-4 max-lg:hidden">
             <Button asChild>
               <Link to="/memberPage/tickets">예매내역</Link>
             </Button>
