@@ -2,7 +2,23 @@ import React from 'react';
 
 import { type ScreeningSeats as ScreeningSeatsT, Seat } from '@/api/seat.api';
 
-const alphabets = ['', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J'];
+const alphabets = [
+  '',
+  'A',
+  'B',
+  'C',
+  'D',
+  'E',
+  'F',
+  'G',
+  'H',
+  'I',
+  'J',
+  'K',
+  'L',
+  'M',
+  'N',
+];
 
 type SeatGridProps = {
   screeningSeats: ScreeningSeatsT;
@@ -18,13 +34,13 @@ export function SeatGrid({
   totalNum,
 }: SeatGridProps) {
   return (
-    <div className="grid w-xs grid-cols-11 gap-1">
-      {[...Array(11).keys()].map(row => (
-        <React.Fragment key={row}>
-          {[...Array(11).keys()].map(col => (
+    <div className="flex flex-col gap-1">
+      {[...Array(15).keys()].map(row => (
+        <div key={row} className="flex gap-1">
+          {[...Array(21).keys()].map(col => (
             <React.Fragment key={col}>
               {col === 0 ? (
-                <div>{alphabets[row]}</div>
+                <div className="size-6">{alphabets[row]}</div>
               ) : (
                 <>
                   {screeningSeats?.seats.some(
@@ -37,7 +53,7 @@ export function SeatGrid({
                       ) ? (
                         <button
                           type="button"
-                          className="bg-primary/80 text-primary-foregrou border"
+                          className="bg-primary/80 text-primary-foreground size-6 border"
                           onClick={() =>
                             setSelectedSeats(
                               selectedSeats.filter(
@@ -51,7 +67,7 @@ export function SeatGrid({
                       ) : (
                         <button
                           type="button"
-                          className="bg-secondary text-secondary-foreground hover:bg-secondary/80 border"
+                          className="bg-secondary text-secondary-foreground hover:bg-secondary/80 size-6 border"
                           onClick={() => {
                             if (selectedSeats.length < totalNum) {
                               setSelectedSeats([
@@ -73,7 +89,11 @@ export function SeatGrid({
                           seat.col === col &&
                           !seat.available,
                       ) ? (
-                        <button type="button" className="border" disabled>
+                        <button
+                          type="button"
+                          className="size-6 border"
+                          disabled
+                        >
                           {col}
                         </button>
                       ) : (
@@ -85,7 +105,7 @@ export function SeatGrid({
               )}
             </React.Fragment>
           ))}
-        </React.Fragment>
+        </div>
       ))}
     </div>
   );
