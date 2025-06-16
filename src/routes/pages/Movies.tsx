@@ -37,7 +37,7 @@ export function Movies() {
                 {hoveringMovieId === movie.id ? (
                   <div className="absolute top-0 flex h-full w-full flex-col justify-center gap-2 rounded-2xl bg-black/10 p-2">
                     <Button
-                      className="rounded-xl hover:scale-105"
+                      className="rounded-xl"
                       onClick={event => {
                         event.stopPropagation();
 
@@ -48,10 +48,7 @@ export function Movies() {
                     >
                       예매하기
                     </Button>
-                    <Button
-                      variant="secondary"
-                      className="rounded-xl hover:scale-105"
-                    >
+                    <Button variant="secondary" className="rounded-xl">
                       상세보기
                     </Button>
                   </div>
