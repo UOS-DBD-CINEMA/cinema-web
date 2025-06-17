@@ -12,7 +12,7 @@ export function Movies() {
   const navigate = useNavigate();
 
   return (
-    <div className="flex justify-center p-4 sm:py-8">
+    <div className="flex p-4 sm:justify-center sm:py-8">
       <Card className="w-6xl gap-0 p-0">
         <div className="flex h-full flex-wrap justify-center gap-4 p-2">
           {movies?.map(movie => (
