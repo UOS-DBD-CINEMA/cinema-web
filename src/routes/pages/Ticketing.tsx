@@ -40,7 +40,7 @@ export function Ticketing() {
     // }
   }, [location.state?.movieId]);
   return (
-    <div className="flex h-[calc(100svh-(--spacing(14)))] p-4 sm:justify-center sm:py-8">
+    <div className="flex h-[calc(100svh-(--spacing(14)))] overflow-auto p-4 sm:justify-center sm:py-8">
       <Card className="w-6xl flex-row gap-0 p-0">
         <div className="w-3xs border-r p-2 sm:w-2xs lg:w-sm">
           {moviesList && (
