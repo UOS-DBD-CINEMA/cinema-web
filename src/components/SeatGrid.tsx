@@ -1,24 +1,7 @@
 import React from 'react';
 
 import { type ScreeningSeats as ScreeningSeatsT, Seat } from '@/api/seat.api';
-
-const alphabets = [
-  '',
-  'A',
-  'B',
-  'C',
-  'D',
-  'E',
-  'F',
-  'G',
-  'H',
-  'I',
-  'J',
-  'K',
-  'L',
-  'M',
-  'N',
-];
+import { seatRowAlphabets } from '@/constants/seat';
 
 type SeatGridProps = {
   screeningSeats: ScreeningSeatsT;
@@ -40,7 +23,7 @@ export function SeatGrid({
           {[...Array(21).keys()].map(col => (
             <React.Fragment key={col}>
               {col === 0 ? (
-                <div className="size-6">{alphabets[row]}</div>
+                <div className="size-6">{seatRowAlphabets[row]}</div>
               ) : (
                 <>
                   {screeningSeats?.seats.some(
