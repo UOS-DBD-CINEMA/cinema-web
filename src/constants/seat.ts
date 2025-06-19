@@ -14,4 +14,4 @@ export const seatRowAlphabets = [
   'L',
   'M',
   'N',
-];
+] as const;
