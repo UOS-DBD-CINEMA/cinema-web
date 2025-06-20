@@ -17,7 +17,7 @@ export function TicketList() {
   return (
     <>
       {tickets.map(ticket => {
-        const { movie, payment, seats, theater } = ticket;
+        const { movie, seats, theater } = ticket;
         return (
           <div
             key={ticket.ticketId}
