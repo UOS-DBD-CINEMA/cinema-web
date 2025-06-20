@@ -64,7 +64,7 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
       screeningId,
       seats: selectedSeats.map(seat => ({ ...seat, available: undefined })),
       payment,
-    }).then(res => {
+    }).then(() => {
       navigate('/member/tickets');
     });
   };
