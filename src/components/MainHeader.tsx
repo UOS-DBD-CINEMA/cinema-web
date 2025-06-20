@@ -58,7 +58,7 @@ export function MainHeader() {
         {isLogin ? (
           <div className="flex gap-4 max-lg:hidden">
             <Button asChild>
-              <Link to="/memberPage/tickets">예매내역</Link>
+              <Link to="/member/tickets">예매내역</Link>
             </Button>
             <Button asChild variant="secondary">
               <Link

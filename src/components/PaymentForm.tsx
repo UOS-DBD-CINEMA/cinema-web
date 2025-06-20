@@ -1,8 +1,11 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { z } from 'zod';
+import { useNavigate } from 'react-router';
+import * as z from 'zod/v4';
 
+import { Seat } from '@/api/seat.api';
+import { postTicketAPI } from '@/api/ticket.api';
 import { cn } from '@/lib/utils';
 
 import { Button } from './ui/button';
@@ -23,45 +26,47 @@ import {
   FormLabel,
   FormMessage,
 } from './ui/form';
-import { Input } from './ui/input';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 
-const languages = [
-  { label: 'English', value: 'en' },
-  { label: 'French', value: 'fr' },
-  { label: 'German', value: 'de' },
-  { label: 'Spanish', value: 'es' },
-  { label: 'Portuguese', value: 'pt' },
-  { label: 'Russian', value: 'ru' },
-  { label: 'Japanese', value: 'ja' },
-  { label: 'Korean', value: 'ko' },
-  { label: 'Chinese', value: 'zh' },
+const paymentTypes = [
+  { label: '카드', value: '카드' },
+  { label: '계좌이체', value: '계좌이체' },
+] as const;
+
+const discountTypes = [
+  { label: '포인트', value: '포인트' },
+  { label: '통신사', value: '통신사' },
 ] as const;
 
 const formSchema = z.object({
-  payment: z.string().min(2, {
-    message: 'payment must be at least 2 characters.',
-  }),
-  discount: z.string().min(2, { message: '' }),
-  language: z.string({
-    required_error: 'Please select a language.',
-  }),
+  paymentType: z.string().min(1, 'Please select a paymentType.'),
+  discountType: z.string().min(1, 'Please select a discountType.'),
 });
 
-export function PaymentForm() {
+type PaymentFormProps = {
+  screeningId: number;
+  selectedSeats: Seat[];
+};
+
+export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
-      payment: '',
-      discount: '',
+      paymentType: '',
+      discountType: '',
     },
   });
 
-  const onSubmit = (values: z.infer<typeof formSchema>) => {
-    // Do something with the form values.
-    // ✅ This will be type-safe and validated.
+  const navigate = useNavigate();
 
-    console.log(values);
+  const onSubmit = (payment: z.infer<typeof formSchema>) => {
+    postTicketAPI({
+      screeningId,
+      seats: selectedSeats.map(seat => ({ ...seat, available: undefined })),
+      payment,
+    }).then(res => {
+      navigate('/member/tickets');
+    });
   };
 
   return (
@@ -72,42 +77,10 @@ export function PaymentForm() {
       >
         <FormField
           control={form.control}
-          name="payment"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-md">결제 수단</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="discount"
-          render={({ field }) => (
-            <FormItem>
-              <FormLabel className="text-md">할인</FormLabel>
-              <FormControl>
-                <Input placeholder="shadcn" {...field} />
-              </FormControl>
-              <FormDescription>
-                This is your public display name.
-              </FormDescription>
-              <FormMessage />
-            </FormItem>
-          )}
-        />
-        <FormField
-          control={form.control}
-          name="language"
+          name="paymentType"
           render={({ field }) => (
             <FormItem className="flex flex-col">
-              <FormLabel>Language</FormLabel>
+              <FormLabel className="text-md">결제 수단</FormLabel>
               <Popover>
                 <PopoverTrigger asChild>
                   <FormControl>
@@ -115,41 +88,41 @@ export function PaymentForm() {
                       variant="outline"
                       role="combobox"
                       className={cn(
-                        'w-[200px] justify-between',
+                        'w-50 justify-between',
                         !field.value && 'text-muted-foreground',
                       )}
                     >
                       {field.value
-                        ? languages.find(
-                            language => language.value === field.value,
+                        ? paymentTypes.find(
+                            paymentType => paymentType.value === field.value,
                           )?.label
-                        : 'Select language'}
+                        : 'Select paymentType'}
                       <ChevronsUpDown className="opacity-50" />
                     </Button>
                   </FormControl>
                 </PopoverTrigger>
-                <PopoverContent className="w-[200px] p-0">
+                <PopoverContent className="w-50 p-0">
                   <Command>
                     <CommandInput
-                      placeholder="Search framework..."
+                      placeholder="Search paymentType..."
                       className="h-9"
                     />
                     <CommandList>
-                      <CommandEmpty>No framework found.</CommandEmpty>
+                      <CommandEmpty>No paymentType found.</CommandEmpty>
                       <CommandGroup>
-                        {languages.map(language => (
+                        {paymentTypes.map(paymentType => (
                           <CommandItem
-                            value={language.label}
-                            key={language.value}
+                            value={paymentType.label}
+                            key={paymentType.value}
                             onSelect={() => {
-                              form.setValue('language', language.value);
+                              form.setValue('paymentType', paymentType.value);
                             }}
                           >
-                            {language.label}
+                            {paymentType.label}
                             <Check
                               className={cn(
                                 'ml-auto',
-                                language.value === field.value
+                                paymentType.value === field.value
                                   ? 'opacity-100'
                                   : 'opacity-0',
                               )}
@@ -161,14 +134,76 @@ export function PaymentForm() {
                   </Command>
                 </PopoverContent>
               </Popover>
-              <FormDescription>
-                This is the language that will be used in the dashboard.
-              </FormDescription>
+              <FormDescription>카드/계좌이체</FormDescription>
               <FormMessage />
             </FormItem>
           )}
         />
-        <Button type="submit">Submit</Button>
+        <FormField
+          control={form.control}
+          name="discountType"
+          render={({ field }) => (
+            <FormItem className="flex flex-col">
+              <FormLabel className="text-md">할인</FormLabel>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <FormControl>
+                    <Button
+                      variant="outline"
+                      role="combobox"
+                      className={cn(
+                        'w-50 justify-between',
+                        !field.value && 'text-muted-foreground',
+                      )}
+                    >
+                      {field.value
+                        ? discountTypes.find(
+                            discountType => discountType.value === field.value,
+                          )?.label
+                        : 'Select discountType'}
+                      <ChevronsUpDown className="opacity-50" />
+                    </Button>
+                  </FormControl>
+                </PopoverTrigger>
+                <PopoverContent className="w-50 p-0">
+                  <Command>
+                    <CommandInput
+                      placeholder="Search discountType..."
+                      className="h-9"
+                    />
+                    <CommandList>
+                      <CommandEmpty>No discountType found.</CommandEmpty>
+                      <CommandGroup>
+                        {discountTypes.map(discountType => (
+                          <CommandItem
+                            value={discountType.label}
+                            key={discountType.value}
+                            onSelect={() => {
+                              form.setValue('discountType', discountType.value);
+                            }}
+                          >
+                            {discountType.label}
+                            <Check
+                              className={cn(
+                                'ml-auto',
+                                discountType.value === field.value
+                                  ? 'opacity-100'
+                                  : 'opacity-0',
+                              )}
+                            />
+                          </CommandItem>
+                        ))}
+                      </CommandGroup>
+                    </CommandList>
+                  </Command>
+                </PopoverContent>
+              </Popover>
+              <FormDescription>포인트/통신사</FormDescription>
+              <FormMessage />
+            </FormItem>
+          )}
+        />
+        <Button type="submit">결제하기</Button>
       </form>
     </Form>
   );

@@ -42,7 +42,10 @@ export function Payment() {
               </p>
             </div>
           </div>
-          <PaymentForm />
+          <PaymentForm
+            screeningId={screening.id}
+            selectedSeats={selectedSeats}
+          />
         </div>
       </Card>
     </div>

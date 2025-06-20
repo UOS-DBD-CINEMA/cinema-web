@@ -40,7 +40,7 @@ const router = createBrowserRouter([
         ],
       },
       {
-        path: 'memberPage',
+        path: 'member',
         children: [{ path: 'tickets', Component: MemberTickets }],
       },
       { path: '*', Component: NotFound },

@@ -74,7 +74,7 @@ export function SeatGrid({
                       ) ? (
                         <button
                           type="button"
-                          className="size-6 border"
+                          className="size-6 border disabled:pointer-events-none disabled:opacity-50"
                           disabled
                         >
                           {col}
