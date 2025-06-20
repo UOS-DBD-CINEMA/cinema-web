@@ -1,5 +1,9 @@
 import { httpClient } from '@/api/axios';
+import { Movie } from '@/api/movie.api';
 import { Seat } from '@/api/seat.api';
+import { Theater } from '@/api/theater.api';
+
+import { Payment } from './payment.api';
 
 export const getTicketsAPI = async () => {
   return await httpClient.get('api/tickets/member');
@@ -16,4 +20,14 @@ type TicketingPayload = {
     paymentType: string;
     discountType: string;
   };
+};
+
+export type Ticket = {
+  ticketId: number;
+  movie: Movie;
+  theater: Theater;
+  screeningTime: string;
+  seats: Omit<Seat, 'available'>[];
+  totalAmount: number;
+  payment: Payment;
 };
