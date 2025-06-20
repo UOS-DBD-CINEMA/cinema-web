@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
+import { MovieCombobox } from '@/components/MovieCombobox';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
 import { useMovies } from '@/hooks/useMovies';
@@ -16,11 +17,12 @@ export function Movies() {
       <Card className="w-6xl gap-0 p-0">
         <div className="flex h-full flex-col items-center gap-4 p-2">
           <h1 className="text-xl font-semibold">영화 목록</h1>
+          <MovieCombobox movies={movies ?? []} />
           <div className="flex flex-wrap justify-center gap-4">
             {movies?.map(movie => (
               <div key={movie.id} className="flex w-50 flex-col">
                 <div
-                  className="relative w-fit"
+                  className="relative w-full"
                   onMouseOver={() => {
                     setHoveringMovieId(movie.id);
                   }}
