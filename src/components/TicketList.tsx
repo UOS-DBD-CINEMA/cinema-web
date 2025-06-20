@@ -21,9 +21,9 @@ export function TicketList() {
         return (
           <div
             key={ticket.ticketId}
-            className="flex flex-wrap items-center justify-center gap-4"
+            className="flex flex-wrap items-center justify-center gap-4 border-t border-dashed py-2"
           >
-            <div className="flex w-xs items-center gap-2">
+            <div className="flex w-xs items-center gap-2 sm:w-md">
               <img
                 src={movie.posterUrl}
                 alt={movie.title}
