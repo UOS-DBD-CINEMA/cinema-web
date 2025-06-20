@@ -7,7 +7,7 @@ import { Card } from '@/components/ui/card';
 import { useMovies } from '@/hooks/useMovies';
 
 export function Movies() {
-  const [hoveringMovieId, setHoveringMovieId] = useState<number | null>(null);
+  const [hoveringMovieId, setHoveringMovieId] = useState<number>(0);
   const { data: movies } = useMovies();
 
   const navigate = useNavigate();
@@ -27,7 +27,7 @@ export function Movies() {
                     setHoveringMovieId(movie.id);
                   }}
                   onMouseOut={() => {
-                    setHoveringMovieId(null);
+                    setHoveringMovieId(0);
                   }}
                   onClick={() => {
                     navigate(`/movies/${movie.id}`);

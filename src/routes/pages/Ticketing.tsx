@@ -11,7 +11,7 @@ import { Card } from '@/components/ui/card';
 import { useMovies } from '@/hooks/useMovies';
 
 export function Ticketing() {
-  const [selectedMovieId, setSelectedMovieId] = useState<number | null>(null);
+  const [selectedMovieId, setSelectedMovieId] = useState<number>(0);
   const [screenings, setScreenings] = useState<ScreeningT[]>([]);
 
   const { data: moviesList } = useMovies();
@@ -19,7 +19,7 @@ export function Ticketing() {
   const location = useLocation();
 
   useEffect(() => {
-    if (typeof selectedMovieId === 'number') {
+    if (selectedMovieId) {
       getScreeningsAPI(selectedMovieId).then(res => {
         setScreenings(res.data);
       });

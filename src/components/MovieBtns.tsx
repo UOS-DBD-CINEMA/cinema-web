@@ -2,8 +2,8 @@ import { Movie } from '@/api/movie.api';
 
 type MovieBtnsProps = {
   moviesList: Movie[];
-  selectedMovieId: number | null;
-  setSelectedMovieId: React.Dispatch<React.SetStateAction<number | null>>;
+  selectedMovieId: number;
+  setSelectedMovieId: React.Dispatch<React.SetStateAction<number>>;
 };
 
 export function MovieBtns({
@@ -19,7 +19,7 @@ export function MovieBtns({
             <button
               type="button"
               className="border-primary hover:bg-primary/10 w-max border-l-2 p-2 text-left font-semibold"
-              onClick={() => setSelectedMovieId(null)}
+              onClick={() => setSelectedMovieId(0)}
             >
               {movie.title}
             </button>

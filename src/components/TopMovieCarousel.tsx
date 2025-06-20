@@ -13,7 +13,7 @@ import { useTopMovies } from '@/hooks/useTopMovies';
 import { Button } from './ui/button';
 
 export function TopMovieCarousel() {
-  const [hoveringMovieId, setHoveringMovieId] = useState<number | null>(null);
+  const [hoveringMovieId, setHoveringMovieId] = useState<number>(0);
   const { data: topMovies } = useTopMovies();
 
   const navigate = useNavigate();
@@ -40,7 +40,7 @@ export function TopMovieCarousel() {
                     setHoveringMovieId(movie.id);
                   }}
                   onMouseOut={() => {
-                    setHoveringMovieId(null);
+                    setHoveringMovieId(0);
                   }}
                   onClick={() => {
                     navigate(`/movies/${movie.id}`);
