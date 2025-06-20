@@ -1,4 +1,4 @@
-import { TopMoviesCarousel } from '@/components/TopMoviesCarousel';
+import { TopMovieCarousel } from '@/components/TopMovieCarousel';
 
 export function Home() {
   return (
@@ -12,7 +12,7 @@ export function Home() {
         />
       </div>
       <div className="flex justify-center py-10">
-        <TopMoviesCarousel />
+        <TopMovieCarousel />
       </div>
     </div>
   );

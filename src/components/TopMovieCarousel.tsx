@@ -12,7 +12,7 @@ import { useTopMovies } from '@/hooks/useTopMovies';
 
 import { Button } from './ui/button';
 
-export function TopMoviesCarousel() {
+export function TopMovieCarousel() {
   const [hoveringMovieId, setHoveringMovieId] = useState<number | null>(null);
   const { data: topMovies } = useTopMovies();
 
