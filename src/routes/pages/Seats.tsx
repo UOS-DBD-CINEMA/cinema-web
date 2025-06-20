@@ -10,6 +10,7 @@ import { NumToggleGroup } from '@/components/NumToggleGroup';
 import { SeatGrid } from '@/components/SeatGrid';
 import { Button } from '@/components/ui/button';
 import { Card } from '@/components/ui/card';
+import { useAuthStore } from '@/store/authStore';
 
 export function Seats() {
   const [screeningSeats, setScreeningSeats] = useState<ScreeningSeatsT | null>(
@@ -23,6 +24,7 @@ export function Seats() {
 
   const [selectedSeats, setSelectedSeats] = useState<Seat[]>([]);
 
+  const { isLogin } = useAuthStore();
   const location = useLocation();
   const navigate = useNavigate();
 
@@ -32,6 +34,23 @@ export function Seats() {
   const totalNum = useMemo(() => {
     return adultNum + youthNum + elderNum + disabledNum;
   }, [adultNum, youthNum, elderNum, disabledNum]);
+
+  const handleTicketing = () => {
+    if (totalNum && totalNum !== selectedSeats.length) return;
+    if (!isLogin) {
+      alert('로그인 후 이용 가능합니다.');
+      return navigate('/');
+    }
+
+    navigate('/ticketing/payment', {
+      state: {
+        screening,
+        selectedSeats: selectedSeats.sort(
+          (a, b) => a.row - b.row || a.col - b.col,
+        ),
+      },
+    });
+  };
 
   useEffect(() => {
     const seats = selectedSeats;
@@ -114,16 +133,7 @@ export function Seats() {
               totalNum={totalNum}
             />
           )}
-          <Button
-            size="lg"
-            onClick={() => {
-              if (totalNum && totalNum === selectedSeats.length) {
-                navigate('/ticketing/payment', {
-                  state: { screening, selectedSeats },
-                });
-              }
-            }}
-          >
+          <Button size="lg" onClick={handleTicketing}>
             예매하기
           </Button>
         </div>
