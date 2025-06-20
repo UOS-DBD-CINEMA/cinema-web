@@ -1,11 +1,10 @@
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router';
 
-import { useMovie } from '@/hooks/useMovie';
-
 export function MovieDetail() {
   const [movieId, setMovieId] = useState<number>(0);
-  const { data } = useMovie(movieId);
+  console.log(movieId);
+  //const { data } = useMovie(movieId);
 
   const params = useParams();
 
