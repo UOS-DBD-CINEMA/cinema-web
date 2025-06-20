@@ -6,7 +6,12 @@ export const getAccessToken = () => {
   return accessToken;
 };
 
-const setAccessToken = (accessToken: string) => {
+export const getRefreshToken = () => {
+  const refreshToken = localStorage.getItem('refreshToken');
+  return refreshToken;
+};
+
+export const setAccessToken = (accessToken: string) => {
   localStorage.setItem('accessToken', accessToken);
 };
 
@@ -14,7 +19,7 @@ const setRefreshToken = (refreshToken: string) => {
   localStorage.setItem('refreshToken', refreshToken);
 };
 
-const removeTokens = () => {
+export const removeTokens = () => {
   localStorage.removeItem('accessToken');
   localStorage.removeItem('refreshToken');
 };
@@ -34,6 +39,9 @@ export const useAuthStore = create(
       storeLogout: () => {
         set({ isLogin: false });
         removeTokens();
+      },
+      updateLogin: () => {
+        set({ isLogin: getAccessToken() ? true : false });
       },
     })),
   ),

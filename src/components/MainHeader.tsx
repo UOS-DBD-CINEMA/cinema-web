@@ -14,9 +14,11 @@ const navigations = [
 ];
 
 export function MainHeader() {
-  const { isLogin, storeLogout } = useAuthStore();
+  const { isLogin, storeLogout, updateLogin } = useAuthStore();
 
   useEffect(() => {
+    updateLogin();
+
     postMemberAPI({
       username: 'string',
       password: 'string',

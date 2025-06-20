@@ -1,9 +1,15 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
-import { getAccessToken } from '@/store/authStore';
+import {
+  getAccessToken,
+  removeTokens,
+  setAccessToken,
+} from '@/store/authStore';
+
+import { refreshLoginAPI } from './auth.api';
 
 const createClient = (config?: AxiosRequestConfig) => {
-  const axiosInstance = axios.create({
+  const instance = axios.create({
     baseURL: '/api',
     timeout: 1000 * 10,
     headers: {
@@ -13,27 +19,39 @@ const createClient = (config?: AxiosRequestConfig) => {
     ...config,
   });
 
-  axiosInstance.interceptors.request.use(config => {
+  instance.interceptors.request.use(config => {
     const accessToken = getAccessToken();
     config.headers.Authorization = accessToken ? `Bearer ${accessToken}` : '';
     return config;
   });
 
-  axiosInstance.interceptors.response.use(
+  instance.interceptors.response.use(
     res => res,
-    err => {
-      if (err.response) {
-        const { status } = err.response;
+    async err => {
+      const {
+        config,
+        response: { status },
+      } = err;
 
-        switch (status) {
-          case 401:
+      if (status === 401 && !config._retry) {
+        config._retry = true;
+        try {
+          const { data: newAccessToken } = await refreshLoginAPI();
+          setAccessToken(newAccessToken);
+          return instance(config);
+        } catch (refreshError) {
+          removeTokens();
+          alert('로그인이 만료되었습니다.');
+          window.location.replace('/');
+          return Promise.reject(refreshError);
         }
       }
+
       return Promise.reject(err);
     },
   );
 
-  return axiosInstance;
+  return instance;
 };
 
 export const httpClient = createClient();
