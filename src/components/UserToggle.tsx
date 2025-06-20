@@ -29,7 +29,7 @@ export function UserToggle() {
           <>
             <DropdownMenuItem
               onClick={() => {
-                navigate('/memberPage/tickets');
+                navigate('/member/tickets');
               }}
             >
               예매내역
