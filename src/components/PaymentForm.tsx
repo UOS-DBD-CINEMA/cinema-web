@@ -1,22 +1,12 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { Link, useNavigate } from 'react-router';
+import { useNavigate } from 'react-router';
 import * as z from 'zod/v4';
 
 import { Seat } from '@/api/seat.api';
 import { postTicketAPI } from '@/api/ticket.api';
-import { cn } from '@/lib/utils';
 
 import { Button } from './ui/button';
-import {
-  Command,
-  CommandEmpty,
-  CommandGroup,
-  CommandInput,
-  CommandItem,
-  CommandList,
-} from './ui/command';
 import {
   Form,
   FormControl,
@@ -26,7 +16,6 @@ import {
   FormLabel,
   FormMessage,
 } from './ui/form';
-import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
 import {
   Select,
   SelectContent,
