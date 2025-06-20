@@ -1,7 +1,7 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import { Check, ChevronsUpDown } from 'lucide-react';
 import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import * as z from 'zod/v4';
 
 import { Seat } from '@/api/seat.api';
@@ -27,6 +27,13 @@ import {
   FormMessage,
 } from './ui/form';
 import { Popover, PopoverContent, PopoverTrigger } from './ui/popover';
+import {
+  Select,
+  SelectContent,
+  SelectItem,
+  SelectTrigger,
+  SelectValue,
+} from './ui/select';
 
 const paymentTypes = [
   { label: '카드', value: '카드' },
@@ -79,61 +86,25 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
           control={form.control}
           name="paymentType"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem>
               <FormLabel className="text-md">결제 수단</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        'w-50 justify-between',
-                        !field.value && 'text-muted-foreground',
-                      )}
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="w-50 justify-between">
+                    <SelectValue placeholder="Select paymentType" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {paymentTypes.map(paymentType => (
+                    <SelectItem
+                      key={paymentType.value}
+                      value={paymentType.value}
                     >
-                      {field.value
-                        ? paymentTypes.find(
-                            paymentType => paymentType.value === field.value,
-                          )?.label
-                        : 'Select paymentType'}
-                      <ChevronsUpDown className="opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-50 p-0">
-                  <Command>
-                    <CommandInput
-                      placeholder="Search paymentType..."
-                      className="h-9"
-                    />
-                    <CommandList>
-                      <CommandEmpty>No paymentType found.</CommandEmpty>
-                      <CommandGroup>
-                        {paymentTypes.map(paymentType => (
-                          <CommandItem
-                            value={paymentType.label}
-                            key={paymentType.value}
-                            onSelect={() => {
-                              form.setValue('paymentType', paymentType.value);
-                            }}
-                          >
-                            {paymentType.label}
-                            <Check
-                              className={cn(
-                                'ml-auto',
-                                paymentType.value === field.value
-                                  ? 'opacity-100'
-                                  : 'opacity-0',
-                              )}
-                            />
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
+                      {paymentType.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormDescription>카드/계좌이체</FormDescription>
               <FormMessage />
             </FormItem>
@@ -143,61 +114,25 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
           control={form.control}
           name="discountType"
           render={({ field }) => (
-            <FormItem className="flex flex-col">
+            <FormItem>
               <FormLabel className="text-md">할인</FormLabel>
-              <Popover>
-                <PopoverTrigger asChild>
-                  <FormControl>
-                    <Button
-                      variant="outline"
-                      role="combobox"
-                      className={cn(
-                        'w-50 justify-between',
-                        !field.value && 'text-muted-foreground',
-                      )}
+              <Select onValueChange={field.onChange} defaultValue={field.value}>
+                <FormControl>
+                  <SelectTrigger className="w-50 justify-between">
+                    <SelectValue placeholder="Select discountType" />
+                  </SelectTrigger>
+                </FormControl>
+                <SelectContent>
+                  {discountTypes.map(discountType => (
+                    <SelectItem
+                      key={discountType.value}
+                      value={discountType.value}
                     >
-                      {field.value
-                        ? discountTypes.find(
-                            discountType => discountType.value === field.value,
-                          )?.label
-                        : 'Select discountType'}
-                      <ChevronsUpDown className="opacity-50" />
-                    </Button>
-                  </FormControl>
-                </PopoverTrigger>
-                <PopoverContent className="w-50 p-0">
-                  <Command>
-                    <CommandInput
-                      placeholder="Search discountType..."
-                      className="h-9"
-                    />
-                    <CommandList>
-                      <CommandEmpty>No discountType found.</CommandEmpty>
-                      <CommandGroup>
-                        {discountTypes.map(discountType => (
-                          <CommandItem
-                            value={discountType.label}
-                            key={discountType.value}
-                            onSelect={() => {
-                              form.setValue('discountType', discountType.value);
-                            }}
-                          >
-                            {discountType.label}
-                            <Check
-                              className={cn(
-                                'ml-auto',
-                                discountType.value === field.value
-                                  ? 'opacity-100'
-                                  : 'opacity-0',
-                              )}
-                            />
-                          </CommandItem>
-                        ))}
-                      </CommandGroup>
-                    </CommandList>
-                  </Command>
-                </PopoverContent>
-              </Popover>
+                      {discountType.label}
+                    </SelectItem>
+                  ))}
+                </SelectContent>
+              </Select>
               <FormDescription>포인트/통신사</FormDescription>
               <FormMessage />
             </FormItem>
