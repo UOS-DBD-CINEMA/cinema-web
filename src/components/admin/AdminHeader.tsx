@@ -1,11 +1,10 @@
+import { Button } from '@ui/button';
 import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
+import { AdminToggle } from '@/components/admin/AdminToggle';
+import { ModeToggle } from '@/components/mode-toggle';
 import { useAdminAuthStore } from '@/store/adminAuthStore';
-
-import { ModeToggle } from '../mode-toggle';
-import { Button } from '../ui/button';
-import { AdminToggle } from './AdminToggle';
 
 const navigations = [
   { to: '/movies', label: '영화' },

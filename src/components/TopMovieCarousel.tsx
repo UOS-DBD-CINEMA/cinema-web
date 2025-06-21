@@ -1,3 +1,4 @@
+import { Button } from '@ui/button';
 import {
   Carousel,
   CarouselContent,
@@ -9,8 +10,6 @@ import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { useTopMovies } from '@/hooks/useTopMovies';
-
-import { Button } from './ui/button';
 
 export function TopMovieCarousel() {
   const [hoveringMovieId, setHoveringMovieId] = useState<number>(0);

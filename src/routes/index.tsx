@@ -1,3 +1,4 @@
+import { AdminHome } from '@pages/admin/AdminHome';
 import { AdminMovies } from '@pages/admin/AdminMovies';
 import { Home } from '@pages/Home';
 import { Join } from '@pages/Join';
@@ -6,15 +7,13 @@ import { MemberTickets } from '@pages/MemberTickets';
 import { MovieDetail } from '@pages/MovieDetail';
 import { Movies } from '@pages/Movies';
 import { NotFound } from '@pages/NotFound';
+import { Payment } from '@pages/Payment';
 import { Seats } from '@pages/Seats';
 import { Ticketing } from '@pages/Ticketing';
 import { createBrowserRouter, RouterProvider } from 'react-router';
 
+import { AdminLayout } from '@/routes/layouts/AdminLayout';
 import { MainLayout } from '@/routes/layouts/MainLayout';
-
-import { AdminLayout } from './layouts/AdminLayout';
-import { AdminHome } from './pages/admin/AdminHome';
-import { Payment } from './pages/Payment';
 
 const router = createBrowserRouter([
   {

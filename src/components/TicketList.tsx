@@ -1,9 +1,8 @@
+import { Button } from '@ui/button';
 import { useEffect, useState } from 'react';
 
 import { getTicketsAPI, type Ticket } from '@/api/ticket.api';
 import { seatRowAlphabets } from '@/constants/seat';
-
-import { Button } from './ui/button';
 
 export function TicketList() {
   const [tickets, setTickets] = useState<Ticket[]>([]);

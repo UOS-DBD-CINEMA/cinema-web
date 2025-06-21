@@ -1,12 +1,11 @@
+import { Button } from '@ui/button';
 import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
 import { postMemberAPI } from '@/api/member.api';
+import { ModeToggle } from '@/components/mode-toggle';
+import { UserToggle } from '@/components/UserToggle';
 import { useAuthStore } from '@/store/authStore';
-
-import { ModeToggle } from './mode-toggle';
-import { Button } from './ui/button';
-import { UserToggle } from './UserToggle';
 
 const navigations = [
   { to: '/movies', label: '영화' },

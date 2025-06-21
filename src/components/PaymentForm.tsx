@@ -1,12 +1,5 @@
 import { zodResolver } from '@hookform/resolvers/zod';
-import { useForm } from 'react-hook-form';
-import { useNavigate } from 'react-router';
-import * as z from 'zod/v4';
-
-import { Seat } from '@/api/seat.api';
-import { postTicketAPI } from '@/api/ticket.api';
-
-import { Button } from './ui/button';
+import { Button } from '@ui/button';
 import {
   Form,
   FormControl,
@@ -15,14 +8,20 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from './ui/form';
+} from '@ui/form';
 import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
-} from './ui/select';
+} from '@ui/select';
+import { useForm } from 'react-hook-form';
+import { useNavigate } from 'react-router';
+import * as z from 'zod/v4';
+
+import { Seat } from '@/api/seat.api';
+import { postTicketAPI } from '@/api/ticket.api';
 
 const paymentTypes = [
   { label: '카드', value: '카드' },
