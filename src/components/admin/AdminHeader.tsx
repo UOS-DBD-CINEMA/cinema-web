@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
 import { AdminToggle } from '@/components/admin/AdminToggle';
-import { ModeToggle } from '@/components/mode-toggle';
+import { ModeToggle } from '@/components/ModeToggle';
 import { useAdminAuthStore } from '@/store/adminAuthStore';
 
 const navigations = [
