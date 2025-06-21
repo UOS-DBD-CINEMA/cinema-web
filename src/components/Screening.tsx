@@ -26,7 +26,7 @@ export function Screening({ screenings }: ScreeningProps) {
             key={screening.id}
             className="bg-secondary hover:bg-secondary/60 text-secondary-foreground w-max rounded-md border p-1"
             onClick={() => {
-              navigate(`seats`, {
+              navigate(`/ticketing/seats`, {
                 state: { screening },
               });
             }}
