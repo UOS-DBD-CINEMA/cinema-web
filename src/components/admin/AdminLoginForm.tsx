@@ -4,6 +4,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@ui/card';
 import {
   Form,
   FormControl,
+  FormDescription,
   FormField,
   FormItem,
   FormLabel,
@@ -56,6 +57,7 @@ export function AdminLoginForm() {
                       onChange={e => field.onChange(Number(e.target.value))}
                     />
                   </FormControl>
+                  <FormDescription>맨 앞의 0은 무시</FormDescription>
                   <FormMessage />
                 </FormItem>
               )}
