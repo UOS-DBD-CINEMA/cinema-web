@@ -18,13 +18,13 @@ export const deleteMemberAPI = async () => {
   return await httpClient.delete('/api/member');
 };
 
-export interface PatchMemberPayload {
+type PatchMemberPayload = {
   password: string;
   phone: string;
   birthdate: string;
-}
+};
 
-export type JoinPayload = {
+type JoinPayload = {
   username: string;
   password: string;
   phone: string;
