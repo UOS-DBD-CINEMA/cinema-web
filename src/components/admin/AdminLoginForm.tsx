@@ -49,7 +49,7 @@ export function AdminLoginForm() {
               name="adminId"
               render={({ field }) => (
                 <FormItem>
-                  <FormLabel>adminId</FormLabel>
+                  <FormLabel>AdminId</FormLabel>
                   <FormControl>
                     <Input
                       type="number"
