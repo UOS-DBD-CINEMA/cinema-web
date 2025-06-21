@@ -48,6 +48,11 @@ const createClient = (config?: AxiosRequestConfig) => {
         }
       }
 
+      if (status === 403) {
+        alert('관리자 전용 페이지입니다.');
+        window.location.replace('/');
+      }
+
       return Promise.reject(err);
     },
   );
