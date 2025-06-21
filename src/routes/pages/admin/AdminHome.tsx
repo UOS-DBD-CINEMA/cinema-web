@@ -18,7 +18,7 @@ export function AdminHome() {
           </div>
         </Card>
       ) : (
-        <div className="flex w-sm flex-col gap-12">
+        <div className="flex w-sm flex-col gap-30">
           <AdminLoginForm />
           <AdminJoinForm />
         </div>
