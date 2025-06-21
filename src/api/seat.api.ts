@@ -1,4 +1,4 @@
-import { httpClient } from './axios';
+import { httpClient } from '@/api/instance';
 
 export const getSeatsAPI = async (screeningId: number) => {
   return await httpClient.get(`api/seats/screening/${screeningId}`);

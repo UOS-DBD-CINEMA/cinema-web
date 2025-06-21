@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/axios';
+import { httpClient } from '@/api/instance';
 import { Movie } from '@/api/movie.api';
 import { Theater } from '@/api/theater.api';
 

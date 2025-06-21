@@ -1,9 +1,8 @@
-import { httpClient } from '@/api/axios';
+import { httpClient } from '@/api/instance';
 import { Movie } from '@/api/movie.api';
+import { Payment } from '@/api/payment.api';
 import { Seat } from '@/api/seat.api';
 import { Theater } from '@/api/theater.api';
-
-import { Payment } from './payment.api';
 
 export const getTicketsAPI = async () => {
   return await httpClient.get('api/tickets/member');

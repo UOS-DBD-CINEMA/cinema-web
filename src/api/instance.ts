@@ -1,12 +1,11 @@
 import axios, { AxiosRequestConfig } from 'axios';
 
+import { refreshLoginAPI } from '@/api/auth.api';
 import {
   getAccessToken,
   removeTokens,
   setAccessToken,
 } from '@/store/authStore';
-
-import { refreshLoginAPI } from './auth.api';
 
 const createClient = (config?: AxiosRequestConfig) => {
   const instance = axios.create({

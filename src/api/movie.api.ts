@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/axios';
+import { httpClient } from '@/api/instance';
 
 export const getMoviesAPI = async () => {
   return await httpClient.get('/api/movies');

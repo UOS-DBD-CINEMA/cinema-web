@@ -1,4 +1,4 @@
-import { httpClient } from './axios';
+import { httpClient } from '@/api/instance';
 
 export const getMemberAPI = async () => {
   return await httpClient.get('/api/member/me');

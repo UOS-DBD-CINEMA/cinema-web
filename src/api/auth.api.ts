@@ -1,4 +1,4 @@
-import { httpClient } from '@/api/axios';
+import { httpClient } from '@/api/instance';
 import { getRefreshToken } from '@/store/authStore';
 
 export const loginAPI = async (loginPayload: LoginPayload) => {
