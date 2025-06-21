@@ -35,14 +35,15 @@ const createClient = (config?: AxiosRequestConfig) => {
       if (status === 401 && !config._retry) {
         config._retry = true;
         try {
-          const { data: newAccessToken } = await refreshLoginAPI();
-          setAccessToken(newAccessToken);
-          return instance(config);
-        } catch (refreshError) {
+          refreshLoginAPI().then(res => {
+            setAccessToken(res.data);
+            return instance(config);
+          });
+        } catch (err) {
           removeTokens();
-          alert('로그인이 만료되었습니다.');
+          alert('로그인 후 이용 가능합니다.');
           window.location.replace('/');
-          return Promise.reject(refreshError);
+          return Promise.reject(err);
         }
       }
 

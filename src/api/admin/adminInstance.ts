@@ -36,16 +36,18 @@ const createClient = (config?: AxiosRequestConfig) => {
 
       if (status === 401 && !config._retry) {
         config._retry = true;
-        try {
-          const { data: newAccessToken } = await adminRefreshLoginAPI();
-          setAdminAccessToken(newAccessToken);
-          return instance(config);
-        } catch (refreshError) {
-          removeAdminTokens();
-          alert('관리자 로그인이 만료되었습니다.');
-          window.location.replace('/admin');
-          return Promise.reject(refreshError);
-        }
+        adminRefreshLoginAPI().then(
+          res => {
+            setAdminAccessToken(res.data);
+            return instance(config);
+          },
+          err => {
+            removeAdminTokens();
+            alert('관리자 로그인 후 이용 가능합니다.');
+            window.location.replace('/admin');
+            return Promise.reject(err);
+          },
+        );
       }
 
       if (status === 403) {
