@@ -31,7 +31,7 @@ const formSchema = z.object({
         ? 'A date of birth is required'
         : 'Not a string',
   }),
-  password: z.string().min(2, 'Id must be at least 2 characters.'),
+  password: z.string().min(2, 'Password must be at least 2 characters.'),
 });
 
 export function JoinForm() {
