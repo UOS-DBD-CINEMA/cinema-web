@@ -6,13 +6,15 @@ import { AdminToggle } from '@/components/admin/AdminToggle';
 import { ModeToggle } from '@/components/ModeToggle';
 import { useAdminAuthStore } from '@/store/adminAuthStore';
 
-const navigations = [
+import { AdminNavToggle } from './AdminNavToggle';
+
+export const adminNavigations = [
   { to: '/movies', label: '영화' },
   { to: '/tickets', label: '티켓' },
   { to: '/screenings', label: '상영일정' },
   { to: '/theaters', label: '상영관' },
   { to: '/codes', label: '코드' },
-];
+] as const;
 
 export function AdminHeader() {
   const { isLogin, storeLogout, updateLogin } = useAdminAuthStore();
@@ -30,8 +32,8 @@ export function AdminHeader() {
             alt="seoul cinema favicon"
           />
         </Link>
-        <nav className="flex gap-4 text-lg font-bold">
-          {navigations.map(nav => (
+        <nav className="flex gap-4 text-lg font-bold max-sm:hidden">
+          {adminNavigations.map(nav => (
             <NavLink
               key={nav.to}
               to={`/admin${nav.to}`}
@@ -43,6 +45,7 @@ export function AdminHeader() {
             </NavLink>
           ))}
         </nav>
+        <AdminNavToggle className="sm:hidden" />
       </div>
       <div className="flex items-center gap-4">
         {isLogin ? (
