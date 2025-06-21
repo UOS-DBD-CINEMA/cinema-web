@@ -20,10 +20,10 @@ export function MainHeader() {
     updateLogin();
 
     postMemberAPI({
-      username: 'string',
-      password: 'string',
-      phone: 'string',
-      birthdate: '2025-05-16',
+      username: 'uos',
+      password: 'uos',
+      phone: '012-3456-7890',
+      birthdate: '2000-01-01',
     });
   }, []);
 
