@@ -45,6 +45,15 @@ export function JoinForm() {
 
   const navigate = useNavigate();
 
+  function regPhoneNumber(e: React.ChangeEvent<HTMLInputElement>) {
+    const result = e.target.value
+      .replace(/[^0-9.]/g, '')
+      .replace(/^(\d{0,3})(\d{0,4})(\d{0,4})$/g, '$1-$2-$3')
+      .replace(/(-{1,2})$/g, '');
+    form.setValue('phone', result);
+  }
+  //job-dongsani.tistory.com/16 [잡동사니 공부방:티스토리]
+
   function onSubmit(values: z.infer<typeof formSchema>) {
     postMemberAPI({
       ...values,
@@ -80,7 +89,13 @@ export function JoinForm() {
             <FormItem>
               <FormLabel>핸드폰 번호</FormLabel>
               <FormControl>
-                <Input type="tel" placeholder="010-1234-5678" {...field} />
+                <Input
+                  type="tel"
+                  maxLength={13}
+                  placeholder="010-1234-5678"
+                  {...field}
+                  onChange={regPhoneNumber}
+                />
               </FormControl>
               <FormMessage />
             </FormItem>
