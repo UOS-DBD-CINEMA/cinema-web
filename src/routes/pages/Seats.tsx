@@ -39,7 +39,7 @@ export function Seats() {
     if (totalNum && totalNum !== selectedSeats.length) return;
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
-      return navigate('/');
+      return navigate('/login');
     }
 
     navigate('/ticketing/payment', {
