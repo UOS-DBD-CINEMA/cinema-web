@@ -30,14 +30,6 @@ export function Ticketing() {
 
   useEffect(() => {
     setSelectedMovieId(location.state?.movieId ?? null);
-
-    // for (let i = 100; i < 120; i++) {
-    //   moviesList?.push({
-    //     id: i,
-    //     title:
-    //       'dddadsggegeaerherhrhaerrahrehargrsehrehsrehersherjeregagwrharherhehehearharhaererhaer',
-    //   });
-    // }
   }, [location.state?.movieId]);
   return (
     <div className="flex h-[calc(100svh-(--spacing(14)))] overflow-auto p-4 sm:justify-center sm:py-8">
