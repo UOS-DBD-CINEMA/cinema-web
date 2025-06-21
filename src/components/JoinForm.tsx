@@ -51,7 +51,6 @@ export function JoinForm() {
       .replace(/(-{1,2})$/g, '');
     form.setValue('phone', result);
   }
-  //job-dongsani.tistory.com/16 [잡동사니 공부방:티스토리]
 
   function onSubmit(values: z.infer<typeof formSchema>) {
     postMemberAPI({
