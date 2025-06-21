@@ -1,13 +1,13 @@
-import { useState } from 'react';
-import { useNavigate } from 'react-router';
-
 import {
   Carousel,
   CarouselContent,
   CarouselItem,
   CarouselNext,
   CarouselPrevious,
-} from '@/components/ui/carousel';
+} from '@ui/carousel';
+import { useState } from 'react';
+import { useNavigate } from 'react-router';
+
 import { useTopMovies } from '@/hooks/useTopMovies';
 
 import { Button } from './ui/button';

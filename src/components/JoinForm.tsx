@@ -1,4 +1,6 @@
 import { zodResolver } from '@hookform/resolvers/zod';
+import { Button } from '@ui/button';
+import { Calendar } from '@ui/calendar';
 import { format } from 'date-fns';
 import { CalendarIcon } from 'lucide-react';
 import { useForm } from 'react-hook-form';
@@ -6,8 +8,6 @@ import { useNavigate } from 'react-router';
 import { z } from 'zod/v4';
 
 import { postMemberAPI } from '@/api/member.api';
-import { Button } from '@/components/ui/button';
-import { Calendar } from '@/components/ui/calendar';
 import { cn } from '@/lib/utils';
 
 import {

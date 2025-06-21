@@ -1,4 +1,4 @@
-import { ToggleGroup, ToggleGroupItem } from '@/components/ui/toggle-group';
+import { ToggleGroup, ToggleGroupItem } from '@ui/toggle-group';
 
 type NumToggleGroupProps = {
   maxNum: number;

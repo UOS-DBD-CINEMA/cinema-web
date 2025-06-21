@@ -1,3 +1,4 @@
+import { Card } from '@ui/card';
 import { useEffect, useState } from 'react';
 import { useLocation } from 'react-router';
 
@@ -7,7 +8,6 @@ import {
 } from '@/api/screening.api';
 import { MovieBtns } from '@/components/MovieBtns';
 import { Screening } from '@/components/Screening';
-import { Card } from '@/components/ui/card';
 import { useMovies } from '@/hooks/useMovies';
 
 export function Ticketing() {

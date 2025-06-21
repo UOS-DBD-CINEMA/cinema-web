@@ -1,9 +1,9 @@
+import { Button } from '@ui/button';
+import { Card } from '@ui/card';
 import { useState } from 'react';
 import { useNavigate } from 'react-router';
 
 import { MovieCombobox } from '@/components/MovieCombobox';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { useMovies } from '@/hooks/useMovies';
 
 export function Movies() {

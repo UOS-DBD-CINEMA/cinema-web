@@ -1,16 +1,15 @@
-import { User } from 'lucide-react';
-import { useNavigate } from 'react-router';
-
-import { Button } from '@/components/ui/button';
-import { useAuthStore } from '@/store/authStore';
-
+import { Button } from '@ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '@ui/dropdown-menu';
+import { User } from 'lucide-react';
+import { useNavigate } from 'react-router';
+
+import { useAuthStore } from '@/store/authStore';
 
 export function UserToggle() {
   const { isLogin, storeLogout } = useAuthStore();

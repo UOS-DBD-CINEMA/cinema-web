@@ -1,13 +1,13 @@
-import { User } from 'lucide-react';
-import { useNavigate } from 'react-router';
-
-import { Button } from '@/components/ui/button';
+import { Button } from '@ui/button';
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
   DropdownMenuTrigger,
-} from '@/components/ui/dropdown-menu';
+} from '@ui/dropdown-menu';
+import { User } from 'lucide-react';
+import { useNavigate } from 'react-router';
+
 import { useAdminAuthStore } from '@/store/adminAuthStore';
 
 export function AdminToggle() {

@@ -1,5 +1,6 @@
+import { Card } from '@ui/card';
+
 import { TicketList } from '@/components/TicketList';
-import { Card } from '@/components/ui/card';
 
 export function MemberTickets() {
   return (

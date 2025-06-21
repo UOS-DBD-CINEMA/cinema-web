@@ -1,8 +1,8 @@
+import { Button } from '@ui/button';
+import { Card } from '@ui/card';
 import { useEffect, useState } from 'react';
 import { useNavigate, useParams } from 'react-router';
 
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { useMovie } from '@/hooks/useMovie';
 
 export function MovieDetail() {

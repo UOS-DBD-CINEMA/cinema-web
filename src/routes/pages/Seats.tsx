@@ -1,3 +1,5 @@
+import { Button } from '@ui/button';
+import { Card } from '@ui/card';
 import { useEffect, useMemo, useState } from 'react';
 import { useLocation, useNavigate } from 'react-router';
 
@@ -8,8 +10,6 @@ import {
 } from '@/api/seat.api';
 import { NumToggleGroup } from '@/components/NumToggleGroup';
 import { SeatGrid } from '@/components/SeatGrid';
-import { Button } from '@/components/ui/button';
-import { Card } from '@/components/ui/card';
 import { useAuthStore } from '@/store/authStore';
 
 export function Seats() {

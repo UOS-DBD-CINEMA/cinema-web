@@ -1,8 +1,8 @@
+import { Card } from '@ui/card';
 import { useLocation } from 'react-router';
 
 import { Seat } from '@/api/seat.api';
 import { PaymentForm } from '@/components/PaymentForm';
-import { Card } from '@/components/ui/card';
 import { seatRowAlphabets } from '@/constants/seat';
 
 export function Payment() {
