@@ -1,4 +1,5 @@
 import { AdminHome } from '@pages/admin/AdminHome';
+import { AdminMovieDetail } from '@pages/admin/AdminMovieDetail';
 import { AdminMovies } from '@pages/admin/AdminMovies';
 import { Home } from '@pages/Home';
 import { Join } from '@pages/Join';
@@ -50,7 +51,13 @@ const router = createBrowserRouter([
     Component: AdminLayout,
     children: [
       { index: true, Component: AdminHome },
-      { path: 'movies', Component: AdminMovies },
+      {
+        path: 'movies',
+        children: [
+          { index: true, Component: AdminMovies },
+          { path: ':movieId', Component: AdminMovieDetail },
+        ],
+      },
       { path: '*', Component: NotFound },
     ],
   },

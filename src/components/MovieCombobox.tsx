@@ -18,9 +18,10 @@ import { type Movie } from '@/api/movie.api';
 
 type MovieComboboxProps = {
   movies: Movie[];
+  admin?: boolean;
 };
 
-export function MovieCombobox({ movies }: MovieComboboxProps) {
+export function MovieCombobox({ movies, admin }: MovieComboboxProps) {
   const [open, setOpen] = React.useState(false);
   const navigate = useNavigate();
 
@@ -48,7 +49,11 @@ export function MovieCombobox({ movies }: MovieComboboxProps) {
                   key={movie.id}
                   value={String(movie.id)}
                   onSelect={selectedMovieId => {
-                    navigate(`/movies/${selectedMovieId}`);
+                    navigate(
+                      admin
+                        ? `/admin/movies/${selectedMovieId}`
+                        : `/movies/${selectedMovieId}`,
+                    );
                     setOpen(false);
                   }}
                 >
