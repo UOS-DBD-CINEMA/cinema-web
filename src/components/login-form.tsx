@@ -18,7 +18,7 @@ export function LoginForm({
   className,
   ...props
 }: React.ComponentProps<'div'>) {
-  const { memberLogin } = useAuth();
+  const { login } = useAuth();
 
   const idRef = useRef<HTMLInputElement>(null);
   const passwordRef = useRef<HTMLInputElement>(null);
@@ -26,12 +26,12 @@ export function LoginForm({
   const handleSubmit = useCallback(
     (event: FormEvent<HTMLFormElement>) => {
       event.preventDefault();
-      memberLogin({
+      login({
         username: idRef.current?.value as string,
         password: passwordRef.current?.value as string,
       });
     },
-    [memberLogin, idRef, passwordRef],
+    [login, idRef, passwordRef],
   );
   return (
     <div className={cn('flex flex-col', className)} {...props}>

@@ -7,7 +7,7 @@ export const useAuth = () => {
   const { storeLogin } = useAuthStore();
   const navigate = useNavigate();
 
-  const memberLogin = (loginPayload: LoginPayload) => {
+  const login = (loginPayload: LoginPayload) => {
     loginAPI(loginPayload).then(res => {
       storeLogin(res.data);
       navigate('/', { replace: true });
@@ -15,6 +15,6 @@ export const useAuth = () => {
   };
 
   return {
-    memberLogin,
+    login,
   };
 };
