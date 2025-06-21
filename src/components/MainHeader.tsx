@@ -25,7 +25,7 @@ export function MainHeader() {
       phone: '012-3456-7890',
       birthdate: '2000-01-01',
     });
-  }, []);
+  }, [updateLogin]);
 
   return (
     <header className="flex h-14 items-center justify-between gap-8 border-b px-4 sm:px-6">

@@ -2,18 +2,16 @@ import { User } from 'lucide-react';
 import { useNavigate } from 'react-router';
 
 import { Button } from '@/components/ui/button';
-import { useAuthStore } from '@/store/authStore';
-
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuSeparator,
   DropdownMenuTrigger,
-} from './ui/dropdown-menu';
+} from '@/components/ui/dropdown-menu';
+import { useAdminAuthStore } from '@/store/adminAuthStore';
 
-export function UserToggle() {
-  const { isLogin, storeLogout } = useAuthStore();
+export function AdminToggle() {
+  const { isLogin, storeLogout } = useAdminAuthStore();
 
   const navigate = useNavigate();
 
@@ -29,46 +27,24 @@ export function UserToggle() {
           <>
             <DropdownMenuItem
               onClick={() => {
-                navigate('/member/tickets');
-              }}
-            >
-              예매내역
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
                 storeLogout();
                 navigate('/');
               }}
             >
-              로그아웃
+              관리자 페이지 로그아웃
             </DropdownMenuItem>
           </>
         ) : (
           <>
             <DropdownMenuItem
               onClick={() => {
-                navigate('/login');
+                navigate('/');
               }}
             >
-              로그인
-            </DropdownMenuItem>
-            <DropdownMenuItem
-              onClick={() => {
-                navigate('/join');
-              }}
-            >
-              회원가입
+              관리자 페이지 나가기
             </DropdownMenuItem>
           </>
         )}
-        <DropdownMenuSeparator />
-        <DropdownMenuItem
-          onClick={() => {
-            navigate('/admin');
-          }}
-        >
-          관리자
-        </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );

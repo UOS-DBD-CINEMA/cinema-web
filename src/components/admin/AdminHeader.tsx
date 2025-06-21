@@ -1,7 +1,11 @@
+import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
+
+import { useAdminAuthStore } from '@/store/adminAuthStore';
 
 import { ModeToggle } from '../mode-toggle';
 import { Button } from '../ui/button';
+import { AdminToggle } from './AdminToggle';
 
 const navigations = [
   { to: '/movies', label: '영화' },
@@ -12,6 +16,11 @@ const navigations = [
 ];
 
 export function AdminHeader() {
+  const { isLogin, storeLogout, updateLogin } = useAdminAuthStore();
+
+  useEffect(() => {
+    updateLogin();
+  }, [updateLogin]);
   return (
     <header className="flex h-14 items-center justify-between gap-8 border-b px-4 sm:px-6">
       <div className="flex items-center gap-4">
@@ -37,12 +46,28 @@ export function AdminHeader() {
         </nav>
       </div>
       <div className="flex items-center gap-4">
-        <div className="flex gap-4">
-          <Button asChild variant="secondary">
-            <Link to="/">관리자 페이지 나가기</Link>
-          </Button>
-        </div>
-        <ModeToggle></ModeToggle>
+        {isLogin ? (
+          <div className="flex gap-4 max-lg:hidden">
+            <Button asChild variant="secondary">
+              <Link
+                to="/"
+                onClick={() => {
+                  storeLogout();
+                }}
+              >
+                관리자 페이지 로그아웃
+              </Link>
+            </Button>
+          </div>
+        ) : (
+          <div className="flex gap-4 max-lg:hidden">
+            <Button asChild variant="secondary">
+              <Link to="/">관리자 페이지 나가기</Link>
+            </Button>
+          </div>
+        )}
+        <AdminToggle />
+        <ModeToggle />
       </div>
     </header>
   );
