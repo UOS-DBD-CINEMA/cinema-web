@@ -10,7 +10,7 @@ import { useAuthStore } from '@/store/authStore';
 const navigations = [
   { to: '/movies', label: '영화' },
   { to: '/ticketing', label: '티켓' },
-];
+] as const;
 
 export function MainHeader() {
   const { isLogin, storeLogout, updateLogin } = useAuthStore();
