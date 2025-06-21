@@ -6,7 +6,7 @@ import {
   DropdownMenuTrigger,
 } from '@ui/dropdown-menu';
 import { Menu } from 'lucide-react';
-import { NavLink, useNavigate } from 'react-router';
+import { NavLink } from 'react-router';
 
 import { adminNavigations } from '@/components/admin/AdminHeader';
 import { cn } from '@/lib/utils';
