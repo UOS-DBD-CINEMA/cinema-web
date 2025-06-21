@@ -15,7 +15,7 @@ export function Movies() {
   return (
     <div className="flex p-4 sm:justify-center sm:py-8">
       <Card className="w-6xl gap-0 p-0">
-        <div className="flex size-full flex-col items-center gap-6 p-2">
+        <div className="flex flex-col items-center gap-6 p-2">
           <h1 className="text-xl font-semibold">영화 목록</h1>
           <MovieCombobox movies={movies ?? []} />
           <div className="flex flex-wrap justify-center gap-4">
