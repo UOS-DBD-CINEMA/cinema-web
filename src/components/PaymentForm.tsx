@@ -29,13 +29,14 @@ const paymentTypes = [
 ] as const;
 
 const discountTypes = [
+  { label: '없음', value: '없음' },
   { label: '포인트', value: '포인트' },
   { label: '통신사', value: '통신사' },
 ] as const;
 
 const formSchema = z.object({
   paymentType: z.string().min(1, 'Please select a paymentType.'),
-  discountType: z.string().min(1, 'Please select a discountType.'),
+  discountType: z.string(),
 });
 
 type PaymentFormProps = {
@@ -48,7 +49,7 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       paymentType: '',
-      discountType: '',
+      discountType: '없음',
     },
   });
 
@@ -107,7 +108,7 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
               <Select onValueChange={field.onChange} defaultValue={field.value}>
                 <FormControl>
                   <SelectTrigger className="w-50 justify-between">
-                    <SelectValue placeholder="Select discountType" />
+                    <SelectValue />
                   </SelectTrigger>
                 </FormControl>
                 <SelectContent>
