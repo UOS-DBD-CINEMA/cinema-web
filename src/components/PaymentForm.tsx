@@ -29,7 +29,7 @@ const paymentTypes = [
 ] as const;
 
 const discountTypes = [
-  { label: '없음', value: '없음' },
+  { label: '적용 안 함', value: '적용 안 함' },
   { label: '포인트', value: '포인트' },
   { label: '통신사', value: '통신사' },
 ] as const;
@@ -49,7 +49,7 @@ export function PaymentForm({ screeningId, selectedSeats }: PaymentFormProps) {
     resolver: zodResolver(formSchema),
     defaultValues: {
       paymentType: '',
-      discountType: '없음',
+      discountType: '적용 안 함',
     },
   });
 
