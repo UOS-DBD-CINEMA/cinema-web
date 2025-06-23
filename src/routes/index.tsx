@@ -16,6 +16,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 import { AdminLayout } from '@/routes/layouts/AdminLayout';
 import { MainLayout } from '@/routes/layouts/MainLayout';
 
+import { AdminCodes } from './pages/admin/AdminCodes';
+
 const router = createBrowserRouter([
   {
     path: '/',
@@ -58,6 +60,7 @@ const router = createBrowserRouter([
           { path: ':movieId', Component: AdminMovieDetail },
         ],
       },
+      { path: 'codes', Component: AdminCodes },
       { path: '*', Component: NotFound },
     ],
   },

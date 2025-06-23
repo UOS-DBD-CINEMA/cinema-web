@@ -10,9 +10,6 @@ import { AdminNavToggle } from './AdminNavToggle';
 
 export const adminNavigations = [
   { to: '/movies', label: '영화' },
-  { to: '/tickets', label: '티켓' },
-  { to: '/screenings', label: '상영일정' },
-  { to: '/theaters', label: '상영관' },
   { to: '/codes', label: '코드' },
 ] as const;
 
