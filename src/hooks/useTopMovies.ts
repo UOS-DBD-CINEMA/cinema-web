@@ -6,8 +6,7 @@ export const useTopMovies = () => {
   const { data } = useQuery<Movie[]>({
     queryKey: ['topMovies'],
     queryFn: async () => await getMoviesAPI().then(res => res.data),
-    staleTime: Infinity,
-    gcTime: Infinity,
+    staleTime: 5000,
   });
 
   return { data };
