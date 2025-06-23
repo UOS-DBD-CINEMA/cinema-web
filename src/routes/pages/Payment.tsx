@@ -26,6 +26,9 @@ export function Payment() {
               <p className="text-2xl font-semibold">{movie.title}</p>
               <p>{screening.startTime.substr(5, 11)}</p>
               <p>상영 시간: {movie.runtime}분</p>
+              <p>장르: {movie.genre}</p>
+              <p>등급: {movie.rating}</p>
+              <br />
               <p>
                 {theater.location} {theater.name}
               </p>
