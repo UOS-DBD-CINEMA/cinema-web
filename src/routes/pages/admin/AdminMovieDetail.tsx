@@ -40,7 +40,7 @@ export function AdminMovieDetail() {
                   <AdminEditMovieForm movie={movie} setMovie={setMovie} />
                 </div>
               </div>
-              <p>{movie.description}</p>
+              <p className="whitespace-pre-wrap">{movie.description}</p>
             </div>
           )}
         </div>

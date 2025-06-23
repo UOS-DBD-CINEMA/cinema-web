@@ -55,7 +55,7 @@ export function MovieDetail() {
                   </Button>
                 </div>
               </div>
-              <p>{movie.description}</p>
+              <p className="whitespace-pre-wrap">{movie.description}</p>
             </div>
           )}
         </div>
