@@ -18,7 +18,7 @@ export function AdminMovieDetail() {
         <div className="flex h-full flex-col items-center gap-6 p-2">
           {movie && (
             <div className="flex flex-col gap-8 lg:w-3xl">
-              <div className="flex flex-wrap items-center gap-2 sm:gap-12">
+              <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-12">
                 <img
                   src={movie.posterUrl}
                   alt={movie.title}
