@@ -6,12 +6,12 @@ import { useNavigate, useParams } from 'react-router';
 import { useMovie } from '@/hooks/useMovie';
 
 export function MovieDetail() {
+  const params = useParams();
+  const navigate = useNavigate();
+
   const [movieId, setMovieId] = useState<number>(0);
   const { data: movie } = useMovie(movieId);
   console.log(movie);
-
-  const params = useParams();
-  const navigate = useNavigate();
 
   useEffect(() => {
     if (params.movieId) {
@@ -34,6 +34,7 @@ export function MovieDetail() {
                   <p className="text-2xl font-semibold">{movie.title}</p>
                   <p>상영 시간: {movie.runtime}분</p>
                   <p>장르: {movie.genre}</p>
+                  <p>등급: {movie.rating}</p>
                   <p>
                     {movie.staff.map(({ name, role }, i) => (
                       <span key={i}>

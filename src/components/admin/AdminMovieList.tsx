@@ -1,7 +1,16 @@
 import { useNavigate } from 'react-router';
 
-import { AdminMovie } from '@/api/admin/movie.api';
+import { AdminMovie, deleteAdminMovieAPI } from '@/api/admin/movie.api';
 import { Button } from '@/components/ui/button';
+import {
+  Dialog,
+  DialogClose,
+  DialogContent,
+  DialogDescription,
+  DialogHeader,
+  DialogTitle,
+  DialogTrigger,
+} from '@/components/ui/dialog';
 
 type AdminMovieListProps = {
   movies: AdminMovie[];
@@ -40,22 +49,39 @@ export function AdminMovieList({ movies, setMovies }: AdminMovieListProps) {
               </div>
             </div>
             <div className="flex flex-col gap-2">
+              <Dialog>
+                <DialogTrigger asChild>
+                  <Button size="sm" variant="secondary">
+                    삭제하기
+                  </Button>
+                </DialogTrigger>
+                <DialogContent className="w-sm">
+                  <DialogHeader>
+                    <DialogTitle>정말 정말로 삭제하시겠습니까?</DialogTitle>
+                    <DialogDescription>
+                      데이터 손실의 위험이 있습니다.
+                    </DialogDescription>
+                  </DialogHeader>
+                  <DialogClose asChild>
+                    <Button
+                      onClick={() => {
+                        deleteAdminMovieAPI(movie.id).then(() => {
+                          setMovies(movies.filter(m => m.id !== movie.id));
+                        });
+                      }}
+                    >
+                      삭제하기
+                    </Button>
+                  </DialogClose>
+                </DialogContent>
+              </Dialog>
               <Button
                 size="sm"
-                variant="secondary"
                 onClick={() => {
-                  setMovies(movies.filter(m => m.id !== movie.id));
+                  navigate(`/admin/movies/${movie.id}`, { state: { movie } });
                 }}
               >
-                삭제하기
-              </Button>
-              <Button
-                size="sm"
-                onClick={() => {
-                  navigate(`/admin/movies/${movie.id}`);
-                }}
-              >
-                수정하기
+                상세 수정
               </Button>
             </div>
           </div>
