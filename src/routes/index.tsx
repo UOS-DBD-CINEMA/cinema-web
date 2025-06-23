@@ -1,3 +1,4 @@
+import { AdminCodes } from '@pages/admin/AdminCodes';
 import { AdminHome } from '@pages/admin/AdminHome';
 import { AdminMovieDetail } from '@pages/admin/AdminMovieDetail';
 import { AdminMovies } from '@pages/admin/AdminMovies';
@@ -15,8 +16,6 @@ import { createBrowserRouter, RouterProvider } from 'react-router';
 
 import { AdminLayout } from '@/routes/layouts/AdminLayout';
 import { MainLayout } from '@/routes/layouts/MainLayout';
-
-import { AdminCodes } from './pages/admin/AdminCodes';
 
 const router = createBrowserRouter([
   {

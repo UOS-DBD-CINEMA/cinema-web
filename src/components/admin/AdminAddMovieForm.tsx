@@ -1,11 +1,21 @@
 import { zodResolver } from '@hookform/resolvers/zod';
 import {
+  Form,
+  FormControl,
+  FormDescription,
+  FormField,
+  FormItem,
+  FormLabel,
+  FormMessage,
+} from '@ui/form';
+import {
   Select,
   SelectContent,
   SelectItem,
   SelectTrigger,
   SelectValue,
 } from '@ui/select';
+import { Textarea } from '@ui/textarea';
 import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { z } from 'zod/v4';
@@ -23,17 +33,6 @@ import {
 import { Input } from '@/components/ui/input';
 import { genres } from '@/constants/genre';
 import { ratings } from '@/constants/rating';
-
-import {
-  Form,
-  FormControl,
-  FormDescription,
-  FormField,
-  FormItem,
-  FormLabel,
-  FormMessage,
-} from '../ui/form';
-import { Textarea } from '../ui/textarea';
 
 const formSchema = z.object({
   title: z.string().min(1, 'title must be at least 1 characters.'),

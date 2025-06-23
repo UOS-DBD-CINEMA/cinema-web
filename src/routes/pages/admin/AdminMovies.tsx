@@ -2,10 +2,9 @@ import { useEffect, useState } from 'react';
 
 import { AdminMovie, getAdminMoviesAPI } from '@/api/admin/movie.api';
 import { AdminAddMovieForm } from '@/components/admin/AdminAddMovieForm';
+import { AdminMovieList } from '@/components/admin/AdminMovieList';
 import { MovieCombobox } from '@/components/MovieCombobox';
 import { Card } from '@/components/ui/card';
-
-import { AdminMovieList } from '../../../components/admin/AdminMovieList';
 
 export function AdminMovies() {
   const [movies, setMovies] = useState<AdminMovie[]>([]);

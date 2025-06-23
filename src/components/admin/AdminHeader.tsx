@@ -2,11 +2,10 @@ import { Button } from '@ui/button';
 import { useEffect } from 'react';
 import { Link, NavLink } from 'react-router';
 
+import { AdminNavToggle } from '@/components/admin/AdminNavToggle';
 import { AdminToggle } from '@/components/admin/AdminToggle';
 import { ModeToggle } from '@/components/ModeToggle';
 import { useAdminAuthStore } from '@/store/adminAuthStore';
-
-import { AdminNavToggle } from './AdminNavToggle';
 
 export const adminNavigations = [
   { to: '/movies', label: '영화' },
