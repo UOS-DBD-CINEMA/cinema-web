@@ -53,6 +53,9 @@ export function MovieCombobox({ movies, admin }: MovieComboboxProps) {
                       admin
                         ? `/admin/movies/${selectedMovieId}`
                         : `/movies/${selectedMovieId}`,
+                      {
+                        state: { movie },
+                      },
                     );
                     setOpen(false);
                   }}
