@@ -23,6 +23,18 @@ export const deleteAdminCodeDetailAPI = async (detailId: number) => {
   return await httpClientForAdmin.delete(`/api/admin/code-details/${detailId}`);
 };
 
+export type CodeGroup = {
+  id: string;
+  name: string;
+};
+
+export type CodeDetail = {
+  id: number;
+  codeGroupId: string;
+  codeGroupName: string;
+  value: string;
+};
+
 type CodeDetailPayload = {
   codeGroupId: string;
   value: string;
