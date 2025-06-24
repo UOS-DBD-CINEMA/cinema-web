@@ -36,7 +36,8 @@ export function Seats() {
   }, [adultNum, youthNum, elderNum, disabledNum]);
 
   const handleTicketing = () => {
-    if (totalNum && totalNum !== selectedSeats.length) return;
+    if (!totalNum || totalNum !== selectedSeats.length) return;
+
     if (!isLogin) {
       alert('로그인 후 이용 가능합니다.');
       return navigate('/login');
