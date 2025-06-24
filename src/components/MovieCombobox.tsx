@@ -47,7 +47,7 @@ export function MovieCombobox({ movies, admin }: MovieComboboxProps) {
               {movies.map(movie => (
                 <CommandItem
                   key={movie.id}
-                  value={String(movie.id)}
+                  value={movie.title}
                   onSelect={selectedMovieId => {
                     navigate(
                       admin
