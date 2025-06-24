@@ -48,11 +48,11 @@ export function MovieCombobox({ movies, admin }: MovieComboboxProps) {
                 <CommandItem
                   key={movie.id}
                   value={movie.title}
-                  onSelect={selectedMovieId => {
+                  onSelect={() => {
                     navigate(
                       admin
-                        ? `/admin/movies/${selectedMovieId}`
-                        : `/movies/${selectedMovieId}`,
+                        ? `/admin/movies/${movie.id}`
+                        : `/movies/${movie.id}`,
                       {
                         state: { movie },
                       },
