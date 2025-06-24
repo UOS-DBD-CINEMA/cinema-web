@@ -16,13 +16,19 @@ export function TicketList() {
   return (
     <>
       {tickets.map(ticket => {
-        const { movie, seats, theater } = ticket;
+        const {
+          movie,
+          seats,
+          theater,
+          totalAmount,
+          payment: { paymentType, discounts },
+        } = ticket;
         return (
           <div
             key={ticket.ticketId}
             className="flex flex-wrap items-center justify-center gap-4 border-t border-dashed py-2"
           >
-            <div className="flex w-xs items-center gap-2 sm:w-md">
+            <div className="flex w-xs items-center gap-2 md:w-md">
               <img
                 src={movie.posterUrl}
                 alt={movie.title}
@@ -48,10 +54,12 @@ export function TicketList() {
                 </p>
               </div>
             </div>
+            <div className="flex w-30 flex-col items-start">
+              <p>결제: {paymentType}</p>
+              <p>{totalAmount}원</p>
+              <p>{discounts.map(discount => discount.discountType)}</p>
+            </div>
             <div className="flex flex-col gap-2">
-              <Button size="sm" variant="secondary">
-                결제 내역
-              </Button>
               <Button size="sm">입장하기</Button>
             </div>
           </div>
