@@ -7,6 +7,7 @@ import {
   DialogClose,
   DialogContent,
   DialogDescription,
+  DialogFooter,
   DialogHeader,
   DialogTitle,
   DialogTrigger,
@@ -62,17 +63,22 @@ export function AdminMovieList({ movies, setMovies }: AdminMovieListProps) {
                       데이터 손실의 위험이 있습니다.
                     </DialogDescription>
                   </DialogHeader>
-                  <DialogClose asChild>
-                    <Button
-                      onClick={() => {
-                        deleteAdminMovieAPI(movie.id).then(() => {
-                          setMovies(movies.filter(m => m.id !== movie.id));
-                        });
-                      }}
-                    >
-                      삭제하기
-                    </Button>
-                  </DialogClose>
+                  <DialogFooter>
+                    <DialogClose asChild>
+                      <Button variant="outline">취소하기</Button>
+                    </DialogClose>
+                    <DialogClose asChild>
+                      <Button
+                        onClick={() => {
+                          deleteAdminMovieAPI(movie.id).then(() => {
+                            setMovies(movies.filter(m => m.id !== movie.id));
+                          });
+                        }}
+                      >
+                        삭제하기
+                      </Button>
+                    </DialogClose>
+                  </DialogFooter>
                 </DialogContent>
               </Dialog>
               <Button
